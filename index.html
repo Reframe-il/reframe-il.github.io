@@ -425,8 +425,8 @@ function renderPortfolio(filter) {
       ov.innerHTML = `<div class="wtitle">${r['כותרת'] || ''}</div><div class="wtype">${r['סוג'] || ''}</div>`;
       el.appendChild(ov);
     }
+  });
 }
-
 
 // ── טעינה — סדרתית בגלל callback יחיד ───────────────────
 async function loadAll() {
