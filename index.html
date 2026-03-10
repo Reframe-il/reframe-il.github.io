@@ -63,7 +63,7 @@ h2{font-family:'Rubik',sans-serif;font-style:italic;font-weight:900;font-size:cl
 .ftab{background:transparent;border:1px solid var(--bf);color:var(--muted);padding:0.4rem 1rem;border-radius:100px;font-family:'Heebo',sans-serif;font-size:0.82rem;font-weight:700;cursor:pointer;transition:all 0.2s}
 .ftab.active,.ftab:hover{background:var(--green);color:#000;border-color:var(--green)}
 .works-grid{display:grid;gap:0.8rem}
-.witem{border-radius:10px;overflow:hidden;position:relative;cursor:pointer;aspect-ratio:16/10;transition:transform 0.25s,box-shadow 0.25s;border:1px solid var(--bf)}
+.witem{border-radius:10px;overflow:hidden;position:relative;cursor:pointer;transition:transform 0.25s,box-shadow 0.25s;border:1px solid var(--bf)}
 .witem:hover{transform:scale(1.02);box-shadow:0 0 0 1px var(--green),0 16px 40px rgba(0,0,0,0.5)}
 .woverlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.85) 0%,transparent 55%);display:flex;flex-direction:column;justify-content:flex-end;padding:1.3rem}
 .wplay{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:52px;height:52px;border-radius:50%;background:rgba(0,255,136,0.15);border:1.5px solid rgba(0,255,136,0.5);display:flex;align-items:center;justify-content:center;font-size:1.2rem;color:var(--green);opacity:0;transition:opacity 0.25s;text-decoration:none;z-index:2}
@@ -393,9 +393,11 @@ async function renderPortfolio(filter) {
 
   grid.innerHTML = items.map((r, i) => {
     const thumb = thumbs[i];
+    const ratio = r['יחס_תצוגה'] || '16:9';
+    const aspectRatio = ratio.replace(':', '/');
     const bgStyle = thumb
-      ? `background:${CARD_BG[i % CARD_BG.length]};background-image:url('${thumb}');background-size:cover;background-position:center`
-      : `background:${CARD_BG[i % CARD_BG.length]}`;
+      ? `aspect-ratio:${aspectRatio};background:${CARD_BG[i % CARD_BG.length]};background-image:url('${thumb}');background-size:cover;background-position:center`
+      : `aspect-ratio:${aspectRatio};background:${CARD_BG[i % CARD_BG.length]}`;
     const itemId = `witem-${i}`;
     const phHTML = `<div class="wplaceholder">
         <div class="wph-type">${r['סוג'] || ''}</div>
