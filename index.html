@@ -333,7 +333,13 @@ const SVC_ICONS = [
   `<svg class="svc-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>`,
   `<svg class="svc-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m16 13 5.223 3.482a.5.5 0 0 0 .777-.416V7.934a.5.5 0 0 0-.777-.416L16 11"></path><rect x="1" y="6" width="15" height="12" rx="2" ry="2"></rect></svg>`
 ];
-const CARD_BG = [
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby1-ZZAyxHLEdXNOEg3YMhkbVX78r1mHg0C5OVr3pkjA4VonogPni3W-CqQz22CJHJ-0Q/exec';
+
+function getDriveFileId(url) {
+  if (!url) return null;
+  const m = url.match(/\/file\/d\/([a-zA-Z0-9_-]+)/);
+  return m ? m[1] : null;
+}
   'linear-gradient(135deg,#001a0d,#004020)',
   'linear-gradient(135deg,#001515,#003030)',
   'linear-gradient(135deg,#0a1a0a,#1a3a1a)',
@@ -370,7 +376,11 @@ function renderPortfolio(filter) {
 
   grid.innerHTML = items.map((r, i) => {
     const ytId = getYouTubeID(r['קישור_וידאו']);
-    const thumb = ytId ? `https://img.youtube.com/vi/${ytId}/maxresdefault.jpg` : null;
+    const driveId = getDriveFileId(r['תמונת_תצוגה']);
+    const manualThumb = driveId
+      ? `${APPS_SCRIPT_URL}?id=${driveId}`
+      : (r['תמונת_תצוגה'] && r['תמונת_תצוגה'].startsWith('http') ? r['תמונת_תצוגה'] : null);
+    const thumb = manualThumb || (ytId ? `https://img.youtube.com/vi/${ytId}/maxresdefault.jpg` : null);
     const itemId = `witem-${i}`;
     const bgStyle = thumb
       ? `background:${CARD_BG[i % CARD_BG.length]};background-image:url('${thumb}');background-size:cover;background-position:center`
