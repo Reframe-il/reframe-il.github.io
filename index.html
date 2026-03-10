@@ -67,13 +67,17 @@ h2{font-family:'Rubik',sans-serif;font-style:italic;font-weight:900;font-size:cl
 .witem:hover{transform:scale(1.02);box-shadow:0 0 0 1px var(--green),0 16px 40px rgba(0,0,0,0.5)}
 .woverlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.85) 0%,transparent 55%);display:flex;flex-direction:column;justify-content:flex-end;padding:1.3rem}
 .wplay{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:52px;height:52px;border-radius:50%;background:rgba(0,255,136,0.15);border:1.5px solid rgba(0,255,136,0.5);display:flex;align-items:center;justify-content:center;font-size:1.2rem;color:var(--green);opacity:0;transition:opacity 0.25s;text-decoration:none;z-index:2}
-.witem:hover .wplay{opacity:1}.wtitle{font-size:0.95rem;font-weight:800;color:white}.wtype{font-size:0.75rem;color:rgba(0,255,136,0.7);margin-top:0.2rem}
+.witem:hover .wplay{opacity:1}
+.witem:not([style*="background-image"]) .wplay{bottom:1.5rem;top:auto;transform:translateX(-50%);opacity:0.6}
+.witem:not([style*="background-image"]):hover .wplay{opacity:1}.wtitle{font-size:0.95rem;font-weight:800;color:white}.wtype{font-size:0.75rem;color:rgba(0,255,136,0.7);margin-top:0.2rem}
 .svc-icon svg{width:2rem;height:2rem;color:var(--green)}
 .chip-icon svg{color:var(--green)}
 .soc svg{color:var(--muted)}
 .soc:hover svg{color:var(--green)}
 .tavatar svg{color:var(--muted)}
-.wplaceholder{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:0.15;pointer-events:none}
+.wplaceholder{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.6rem;padding:1.5rem;text-align:center;pointer-events:none}
+.wph-type{font-size:0.72rem;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:var(--green);opacity:0.7}
+.wph-title{font-family:'Rubik',sans-serif;font-style:italic;font-weight:900;font-size:clamp(1.4rem,3vw,2.2rem);color:white;line-height:1.1}
 .wplaceholder svg{width:4rem;height:4rem;color:var(--green)}
 #process{background:var(--bg2)}
 .steps-grid{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--bf)}
@@ -366,25 +370,49 @@ function renderPortfolio(filter) {
 
   grid.innerHTML = items.map((r, i) => {
     const ytId = getYouTubeID(r['קישור_וידאו']);
-    const manualThumb = r['תמונת_תצוגה'] && r['תמונת_תצוגה'].startsWith('http') ? r['תמונת_תצוגה'] : null;
-    const thumb = manualThumb || (ytId ? `https://img.youtube.com/vi/${ytId}/maxresdefault.jpg` : null);
+    const thumb = ytId ? `https://img.youtube.com/vi/${ytId}/maxresdefault.jpg` : null;
+    const itemId = `witem-${i}`;
     const bgStyle = thumb
       ? `background:${CARD_BG[i % CARD_BG.length]};background-image:url('${thumb}');background-size:cover;background-position:center`
       : `background:${CARD_BG[i % CARD_BG.length]}`;
-    const icon = TYPE_ICONS[r['סוג']] || '🎬';
+    const phHTML = `<div class="wplaceholder">
+        <div class="wph-type">${r['סוג'] || ''}</div>
+        <div class="wph-title">${r['כותרת'] || ''}</div>
+      </div>`;
     return `
-    <div class="witem reveal" style="${bgStyle}">
-      ${!thumb ? `<div class="wplaceholder">${icon}</div>` : ''}
-      ${r['קישור_וידאו'] ? `<a class="wplay" href="${r['קישור_וידאו']}" target="_blank">&#9654;</a>` : '<div class="wplay">&#9654;</div>'}
-      <div class="woverlay">
+    <div class="witem reveal" id="${itemId}" style="${bgStyle}" ${thumb ? `data-thumb="${thumb}" data-title="${r['כותרת']||''}" data-type="${r['סוג']||''}"` : ''}>
+      ${!thumb ? phHTML : ''}
+      ${r['קישור_וידאו'] ? `<a class="wplay" href="${r['קישור_וידאו']}" target="_blank">&#9654;</a>` : ''}
+      ${thumb ? `<div class="woverlay">
         <div class="wtitle">${r['כותרת'] || ''}</div>
         <div class="wtype">${r['סוג'] || ''}</div>
-      </div>
+      </div>` : ''}
     </div>`;
   }).join('');
   grid.style.gridTemplateColumns = 'repeat(6,1fr)';
   grid.querySelectorAll('.witem').forEach((el, i) => {
     el.style.gridColumn = i < 2 ? 'span 3' : 'span 2';
+
+    // בדוק אם התמונה נטענה בהצלחה
+    const thumb = el.dataset.thumb;
+    if (thumb) {
+      const img = new Image();
+      img.onload = () => {}; // תמונה תקינה — לא עושים כלום
+      img.onerror = () => {
+        // תמונה נכשלה — עבור ל-placeholder
+        el.style.backgroundImage = '';
+        el.style.backgroundSize = '';
+        el.style.backgroundPosition = '';
+        el.querySelector('.woverlay')?.remove();
+        if (!el.querySelector('.wplaceholder')) {
+          const ph = document.createElement('div');
+          ph.className = 'wplaceholder';
+          ph.innerHTML = `<div class="wph-type">${el.dataset.type}</div><div class="wph-title">${el.dataset.title}</div>`;
+          el.insertBefore(ph, el.firstChild);
+        }
+      };
+      img.src = thumb;
+    }
   });
   reObserve();
 }
