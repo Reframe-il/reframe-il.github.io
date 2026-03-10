@@ -358,7 +358,7 @@ function reObserve() {
 
 let allPortfolio = [];
 
-function renderPortfolio(filter) {
+async function renderPortfolio(filter) {
   const items = filter === 'הכל' ? allPortfolio : allPortfolio.filter(r => r['סוג'] === filter);
   const grid = document.getElementById('works-grid');
 
@@ -375,23 +375,34 @@ function renderPortfolio(filter) {
     return m ? m[1] : null;
   }
 
-  grid.innerHTML = items.map((r, i) => {
+  async function getThumbUrl(r) {
     const ytId = getYouTubeID(r['קישור_וידאו']);
+    if (ytId) return `https://img.youtube.com/vi/${ytId}/maxresdefault.jpg`;
     const driveId = getDriveFileId(r['תמונת_תצוגה']);
-    const manualThumb = driveId
-      ? `${APPS_SCRIPT_URL}?id=${driveId}`
-      : (r['תמונת_תצוגה'] && r['תמונת_תצוגה'].startsWith('http') ? r['תמונת_תצוגה'] : null);
-    const thumb = manualThumb || (ytId ? `https://img.youtube.com/vi/${ytId}/maxresdefault.jpg` : null);
-    const itemId = `witem-${i}`;
+    if (driveId) {
+      try {
+        const res = await fetch(`${APPS_SCRIPT_URL}?id=${driveId}`);
+        const json = await res.json();
+        if (json.data) return `data:${json.mimeType};base64,${json.data}`;
+      } catch(e) {}
+    }
+    return null;
+  }
+
+  const thumbs = await Promise.all(items.map(r => getThumbUrl(r)));
+
+  grid.innerHTML = items.map((r, i) => {
+    const thumb = thumbs[i];
     const bgStyle = thumb
       ? `background:${CARD_BG[i % CARD_BG.length]};background-image:url('${thumb}');background-size:cover;background-position:center`
       : `background:${CARD_BG[i % CARD_BG.length]}`;
+    const itemId = `witem-${i}`;
     const phHTML = `<div class="wplaceholder">
         <div class="wph-type">${r['סוג'] || ''}</div>
         <div class="wph-title">${r['כותרת'] || ''}</div>
       </div>`;
     return `
-    <div class="witem reveal" id="${itemId}" style="${bgStyle}" ${thumb ? `data-thumb="${thumb}" data-title="${r['כותרת']||''}" data-type="${r['סוג']||''}"` : ''}>
+    <div class="witem reveal" id="${itemId}" style="${bgStyle}">
       ${!thumb ? phHTML : ''}
       ${r['קישור_וידאו'] ? `<a class="wplay" href="${r['קישור_וידאו']}" target="_blank">&#9654;</a>` : ''}
       ${thumb ? `<div class="woverlay">
@@ -472,9 +483,9 @@ async function loadAll() {
       if (!e.target.matches('.ftab')) return;
       tabsEl.querySelectorAll('.ftab').forEach(b => b.classList.remove('active'));
       e.target.classList.add('active');
-      renderPortfolio(e.target.dataset.filter);
+      await renderPortfolio(e.target.dataset.filter);
     });
-    renderPortfolio('הכל');
+    await renderPortfolio('הכל');
 
     // CLIENTS
     const cGrid = document.getElementById('clients-grid');
