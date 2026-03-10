@@ -358,88 +358,75 @@ function reObserve() {
 
 let allPortfolio = [];
 
-async function renderPortfolio(filter) {
+function getYouTubeID(url) {
+  if (!url) return null;
+  const m = url.match(/[?&]v=([a-zA-Z0-9_-]{11})/) || url.match(/(?:youtu\.be\/|embed\/|shorts\/)([a-zA-Z0-9_-]{11})/);
+  return m ? m[1] : null;
+}
+
+async function getThumbUrl(r) {
+  const ytId = getYouTubeID(r['קישור_וידאו']);
+  if (ytId) return `https://img.youtube.com/vi/${ytId}/maxresdefault.jpg`;
+  const driveId = getDriveFileId(r['תמונת_תצוגה']);
+  if (driveId) {
+    try {
+      const res = await fetch(`${APPS_SCRIPT_URL}?id=${driveId}`);
+      const json = await res.json();
+      if (json.data) return `data:${json.mimeType};base64,${json.data}`;
+    } catch(e) {}
+  }
+  return null;
+}
+
+function renderPortfolio(filter) {
   const items = filter === 'הכל' ? allPortfolio : allPortfolio.filter(r => r['סוג'] === filter);
   const grid = document.getElementById('works-grid');
 
-  const TYPE_ICONS = {
-    'סרטים':   `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="64" height="64"><rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect><line x1="7" y1="2" x2="7" y2="22"></line><line x1="17" y1="2" x2="17" y2="22"></line><line x1="2" y1="12" x2="22" y2="12"></line></svg>`,
-    'פודקאסט': `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="64" height="64"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="22"></line></svg>`,
-    'רשתות':   `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="64" height="64"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>`,
-    'קליפים':  `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="64" height="64"><path d="m16 13 5.223 3.482a.5.5 0 0 0 .777-.416V7.934a.5.5 0 0 0-.777-.416L16 11"></path><rect x="1" y="6" width="15" height="12" rx="2"></rect></svg>`
-  };
-
-  function getYouTubeID(url) {
-    if (!url) return null;
-    const m = url.match(/[?&]v=([a-zA-Z0-9_-]{11})/) || url.match(/(?:youtu\.be\/|embed\/|shorts\/)([a-zA-Z0-9_-]{11})/);
-    return m ? m[1] : null;
-  }
-
-  async function getThumbUrl(r) {
-    const ytId = getYouTubeID(r['קישור_וידאו']);
-    if (ytId) return `https://img.youtube.com/vi/${ytId}/maxresdefault.jpg`;
-    const driveId = getDriveFileId(r['תמונת_תצוגה']);
-    if (driveId) {
-      try {
-        const res = await fetch(`${APPS_SCRIPT_URL}?id=${driveId}`);
-        const json = await res.json();
-        if (json.data) return `data:${json.mimeType};base64,${json.data}`;
-      } catch(e) {}
-    }
-    return null;
-  }
-
-  const thumbs = await Promise.all(items.map(r => getThumbUrl(r)));
-
+  // רינדור מיידי עם placeholder לכולם
   grid.innerHTML = items.map((r, i) => {
-    const thumb = thumbs[i];
     const ratio = r['יחס_תצוגה'] || '16:9';
     const aspectRatio = ratio.replace(':', '/');
-    const bgStyle = thumb
-      ? `aspect-ratio:${aspectRatio};background:${CARD_BG[i % CARD_BG.length]};background-image:url('${thumb}');background-size:cover;background-position:center`
-      : `aspect-ratio:${aspectRatio};background:${CARD_BG[i % CARD_BG.length]}`;
-    const itemId = `witem-${i}`;
-    const phHTML = `<div class="wplaceholder">
+    const bgStyle = `aspect-ratio:${aspectRatio};background:${CARD_BG[i % CARD_BG.length]}`;
+    return `
+    <div class="witem reveal" id="witem-${i}" style="${bgStyle}" data-idx="${i}">
+      <div class="wplaceholder">
         <div class="wph-type">${r['סוג'] || ''}</div>
         <div class="wph-title">${r['כותרת'] || ''}</div>
-      </div>`;
-    return `
-    <div class="witem reveal" id="${itemId}" style="${bgStyle}">
-      ${!thumb ? phHTML : ''}
+      </div>
       ${r['קישור_וידאו'] ? `<a class="wplay" href="${r['קישור_וידאו']}" target="_blank">&#9654;</a>` : ''}
-      ${thumb ? `<div class="woverlay">
-        <div class="wtitle">${r['כותרת'] || ''}</div>
-        <div class="wtype">${r['סוג'] || ''}</div>
-      </div>` : ''}
     </div>`;
   }).join('');
-  grid.style.gridTemplateColumns = 'repeat(6,1fr)';
-  grid.querySelectorAll('.witem').forEach((el, i) => {
-    el.style.gridColumn = i < 2 ? 'span 3' : 'span 2';
 
-    // בדוק אם התמונה נטענה בהצלחה
-    const thumb = el.dataset.thumb;
-    if (thumb) {
-      const img = new Image();
-      img.onload = () => {}; // תמונה תקינה — לא עושים כלום
-      img.onerror = () => {
-        // תמונה נכשלה — עבור ל-placeholder
-        el.style.backgroundImage = '';
-        el.style.backgroundSize = '';
-        el.style.backgroundPosition = '';
-        el.querySelector('.woverlay')?.remove();
-        if (!el.querySelector('.wplaceholder')) {
-          const ph = document.createElement('div');
-          ph.className = 'wplaceholder';
-          ph.innerHTML = `<div class="wph-type">${el.dataset.type}</div><div class="wph-title">${el.dataset.title}</div>`;
-          el.insertBefore(ph, el.firstChild);
-        }
-      };
-      img.src = thumb;
-    }
+  grid.style.gridTemplateColumns = 'repeat(6,1fr)';
+  let col = 0;
+  grid.querySelectorAll('.witem').forEach((el, i) => {
+    const ratio = el.style.aspectRatio || '16/9';
+    const isVertical = ratio === '9/16';
+    const isFirst = col === 0;
+    const span = isVertical ? 1 : (i < 2 ? 3 : 2);
+    el.style.gridColumn = `span ${span}`;
+    col = (col + span) % 6;
   });
   reObserve();
+
+  // טעינת תמונות ברקע
+  items.forEach(async (r, i) => {
+    const thumb = await getThumbUrl(r);
+    if (!thumb) return;
+    const el = document.getElementById(`witem-${i}`);
+    if (!el) return;
+    el.style.backgroundImage = `url('${thumb}')`;
+    el.style.backgroundSize = 'cover';
+    el.style.backgroundPosition = 'center';
+    el.querySelector('.wplaceholder')?.remove();
+    if (!el.querySelector('.woverlay')) {
+      const ov = document.createElement('div');
+      ov.className = 'woverlay';
+      ov.innerHTML = `<div class="wtitle">${r['כותרת'] || ''}</div><div class="wtype">${r['סוג'] || ''}</div>`;
+      el.appendChild(ov);
+    }
 }
+
 
 // ── טעינה — סדרתית בגלל callback יחיד ───────────────────
 async function loadAll() {
@@ -485,9 +472,9 @@ async function loadAll() {
       if (!e.target.matches('.ftab')) return;
       tabsEl.querySelectorAll('.ftab').forEach(b => b.classList.remove('active'));
       e.target.classList.add('active');
-      await renderPortfolio(e.target.dataset.filter);
+      renderPortfolio(e.target.dataset.filter);
     });
-    await renderPortfolio('הכל');
+    renderPortfolio('הכל');
 
     // CLIENTS
     const cGrid = document.getElementById('clients-grid');
