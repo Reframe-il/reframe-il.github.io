@@ -479,7 +479,7 @@ async function loadAll() {
     tabsEl.innerHTML = types.map((t, i) =>
       `<button class="ftab${i===0?' active':''}" data-filter="${t}">${t}</button>`
     ).join('');
-    tabsEl.addEventListener('click', e => {
+    tabsEl.addEventListener('click', async e => {
       if (!e.target.matches('.ftab')) return;
       tabsEl.querySelectorAll('.ftab').forEach(b => b.classList.remove('active'));
       e.target.classList.add('active');
