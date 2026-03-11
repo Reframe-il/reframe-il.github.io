@@ -45,7 +45,7 @@ h1 .acc{color:var(--green)}
 .tsep{color:rgba(0,0,0,0.3)}
 @keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 .stats-bar{display:grid;border-bottom:1px solid var(--bf);background:var(--bg)}
-.stat{padding:2.2rem 1rem;text-align:center;border-left:1px solid var(--bf)}.stat:last-child{border-left:none}
+.stat{padding:2.2rem 1rem;text-align:center;border-left:1px solid rgba(0,255,136,0.25)}.stat:last-child{border-left:none}
 .stat-num{font-family:'Rubik',sans-serif;font-style:italic;font-weight:900;font-size:2.8rem;line-height:1;color:var(--green)}
 .stat-label{font-size:0.78rem;font-weight:700;color:var(--muted);margin-top:0.3rem}
 .section{padding:6rem 3rem}.section-inner{max-width:1200px;margin:0 auto}
@@ -107,7 +107,7 @@ h2{font-family:'Rubik',sans-serif;font-style:italic;font-weight:900;font-size:cl
 .step:hover{background:var(--bg3)}
 .step::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--green);transform:scaleX(0);transform-origin:right;transition:transform 0.4s}
 .step:hover::before{transform:scaleX(1);transform-origin:left}
-.step-num{font-family:'Rubik',sans-serif;font-style:italic;font-size:3.2rem;font-weight:900;color:rgba(0,255,136,0.12);line-height:1;margin-bottom:1rem;direction:ltr}
+.step-num{font-family:'Rubik',sans-serif;font-style:italic;font-size:3.2rem;font-weight:900;color:rgba(0,255,136,0.45);line-height:1;margin-bottom:1rem;direction:ltr}
 .step-title{font-size:1.05rem;font-weight:800;margin-bottom:0.5rem;color:white}.step-desc{font-size:0.87rem;color:var(--muted);line-height:1.6}
 #clients{background:var(--bg);padding:5rem 3rem;border-top:1px solid var(--bf);border-bottom:1px solid var(--bf)}
 #clients .eyebrow{display:block;margin-bottom:3rem;text-align:center}
@@ -181,7 +181,7 @@ footer{background:var(--dark);padding:2rem 3rem;display:flex;align-items:center;
     <li><a href="#testi">המלצות</a></li>
     <li><a href="#contact">צור קשר</a></li>
   </ul>
-  <button class="nav-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">בואו נעבוד &#9658;</button>
+  <button class="nav-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">בואו נעבוד יחד &#9658;</button>
 </nav>
 
 <section class="hero">
@@ -258,11 +258,11 @@ footer{background:var(--dark);padding:2rem 3rem;display:flex;align-items:center;
   <div class="section-inner">
     <div class="cgrid">
       <div>
-        <p class="eyebrow reveal">בואו נעבוד ביחד</p>
+        <p class="eyebrow reveal">בואו נעבוד יחד</p>
         <div class="big-cta reveal">יש לך<br/>פרויקט?<br/>בוא נעשה<br/>לו <span class="acc">Reframe.</span></div>
         <div class="chips">
-          <div class="chip reveal"><div class="chip-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></div><div><div class="chip-label">אימייל</div><div class="chip-val" id="contact-email">…</div></div></div>
-          <div class="chip reveal d1"><div class="chip-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg></div><div><div class="chip-label">וואטסאפ</div><div class="chip-val" id="contact-phone">…</div></div></div>
+          <a class="chip reveal" id="chip-email" href="#" style="text-decoration:none"><div class="chip-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></div><div><div class="chip-label">אימייל</div><div class="chip-val" id="contact-email">…</div></div></a>
+          <a class="chip reveal d1" id="chip-phone" href="#" target="_blank" style="text-decoration:none"><div class="chip-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg></div><div><div class="chip-label">וואטסאפ</div><div class="chip-val" id="contact-phone">…</div></div></a>
           <div class="chip reveal d2"><div class="chip-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg></div><div><div class="chip-label">זמן תגובה</div><div class="chip-val">עד 24 שעות</div></div></div>
         </div>
       </div>
@@ -280,7 +280,7 @@ footer{background:var(--dark);padding:2rem 3rem;display:flex;align-items:center;
           </select>
         </div>
         <div class="fg"><label>ספר לי על הפרויקט</label><textarea rows="4" placeholder="מה הפרויקט? מה לוח הזמנים? יש חומרי גלם?"></textarea></div>
-        <button class="sbtn" onclick="this.textContent='&#10003; נשלח! אחזור אליך בקרוב'">שלח ונתחיל לעבוד &#9889;</button>
+        <button class="sbtn" onclick="this.textContent='&#10003; נשלח! אחזור אליך בקרוב'">בואו נעבוד יחד &#9889;</button>
       </div>
     </div>
   </div>
@@ -506,8 +506,16 @@ async function loadAll() {
 
     // CONTACT
     כללי.forEach(r => {
-      if (r['שדה'] === 'אימייל') document.getElementById('contact-email').textContent = r['ערך'];
-      if (r['שדה'] === 'טלפון')  document.getElementById('contact-phone').textContent  = r['ערך'];
+      if (r['שדה'] === 'אימייל') {
+        document.getElementById('contact-email').textContent = r['ערך'];
+        document.getElementById('chip-email').href = 'mailto:' + r['ערך'];
+      }
+      if (r['שדה'] === 'טלפון') {
+        document.getElementById('contact-phone').textContent = r['ערך'];
+        const digits = r['ערך'].replace(/\D/g, '');
+        const wa = digits.startsWith('0') ? '972' + digits.slice(1) : digits;
+        document.getElementById('chip-phone').href = 'https://wa.me/' + wa;
+      }
     });
 
     // STATS
