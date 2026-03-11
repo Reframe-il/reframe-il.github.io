@@ -44,7 +44,7 @@ h1 .acc{color:var(--green)}
 .ticker span{font-weight:900;font-size:0.82rem;letter-spacing:1.5px;text-transform:uppercase;color:#000;flex-shrink:0}
 .tsep{color:rgba(0,0,0,0.3)}
 @keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-.stats-bar{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid var(--bf);background:var(--bg)}
+.stats-bar{display:grid;border-bottom:1px solid var(--bf);background:var(--bg)}
 .stat{padding:2.2rem 1rem;text-align:center;border-left:1px solid var(--bf)}.stat:last-child{border-left:none}
 .stat-num{font-family:'Rubik',sans-serif;font-style:italic;font-weight:900;font-size:2.8rem;line-height:1;color:var(--green)}
 .stat-label{font-size:0.78rem;font-weight:700;color:var(--muted);margin-top:0.3rem}
@@ -66,22 +66,25 @@ h2{font-family:'Rubik',sans-serif;font-style:italic;font-weight:900;font-size:cl
 .filter-tabs{display:flex;gap:0.5rem;flex-wrap:wrap}
 .ftab{background:transparent;border:1px solid var(--bf);color:var(--muted);padding:0.4rem 1rem;border-radius:100px;font-family:'Heebo',sans-serif;font-size:0.82rem;font-weight:700;cursor:pointer;transition:all 0.2s}
 .ftab.active,.ftab:hover{background:var(--green);color:#000;border-color:var(--green)}
-.works-grid{display:grid;gap:0.8rem}
-.witem{border-radius:10px;overflow:hidden;position:relative;cursor:pointer;transition:transform 0.25s,box-shadow 0.25s;border:1px solid var(--bf)}
-.witem:hover{transform:scale(1.02);box-shadow:0 0 0 1px var(--green),0 16px 40px rgba(0,0,0,0.5)}
-.woverlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.85) 0%,transparent 55%);display:flex;flex-direction:column;justify-content:flex-end;padding:1.3rem}
-.wplay{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:52px;height:52px;border-radius:50%;background:rgba(0,255,136,0.15);border:1.5px solid rgba(0,255,136,0.5);display:flex;align-items:center;justify-content:center;font-size:1.2rem;color:var(--green);opacity:0;transition:opacity 0.25s;text-decoration:none;z-index:2}
-.witem:hover .wplay{opacity:1}
-.witem:not([style*="background-image"]) .wplay{bottom:1.5rem;top:auto;transform:translateX(-50%);opacity:0.6}
-.witem:not([style*="background-image"]):hover .wplay{opacity:1}.wtitle{font-size:0.95rem;font-weight:800;color:white}.wtype{font-size:0.75rem;color:rgba(0,255,136,0.7);margin-top:0.2rem}
+.works-grid{display:grid;gap:0.6rem;grid-template-columns:repeat(4,1fr);grid-auto-rows:220px}
+.witem{border-radius:10px;overflow:hidden;position:relative;cursor:pointer;transition:transform 0.25s,box-shadow 0.25s;border:1px solid var(--bf);background-size:cover;background-position:center}
+.witem-pair{display:flex;gap:0.6rem}
+.witem-half{flex:1;border-radius:10px;overflow:hidden;position:relative;cursor:pointer;transition:transform 0.25s,box-shadow 0.25s;border:1px solid var(--bf);background-size:cover;background-position:center;min-height:220px}
+.witem:hover,.witem-half:hover{transform:scale(1.02);box-shadow:0 0 0 1px var(--green),0 16px 40px rgba(0,0,0,0.5)}
+.woverlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.85) 0%,transparent 55%);display:flex;flex-direction:column;justify-content:flex-end;padding:1rem}
+.wplay{position:absolute;bottom:0.8rem;left:0.8rem;width:32px;height:32px;border-radius:50%;background:rgba(0,255,136,0.15);border:1.5px solid rgba(0,255,136,0.5);display:flex;align-items:center;justify-content:center;font-size:0.75rem;color:var(--green);opacity:0;transition:opacity 0.25s;text-decoration:none;z-index:10}
+.witem:hover .wplay,.witem-half:hover .wplay{opacity:1}
+.witem:not([style*="background-image"]) .wplay,.witem-half:not([style*="background-image"]) .wplay{opacity:0.5}
+.witem:not([style*="background-image"]):hover .wplay,.witem-half:not([style*="background-image"]):hover .wplay{opacity:1}.wtitle{font-size:0.82rem;font-weight:800;color:white;line-height:1.2;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}.wtype{font-size:0.62rem;letter-spacing:1px;text-transform:uppercase;color:rgba(0,255,136,0.8);margin-top:0.25rem;font-weight:700}
 .svc-icon svg{width:2rem;height:2rem;color:var(--green)}
 .chip-icon svg{color:var(--green)}
 .soc svg{color:var(--muted)}
 .soc:hover svg{color:var(--green)}
 .tavatar svg{color:var(--muted)}
-.wplaceholder{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.6rem;padding:1.5rem;text-align:center;pointer-events:none}
-.wph-type{font-size:0.72rem;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:var(--green);opacity:0.7}
-.wph-title{font-family:'Rubik',sans-serif;font-style:italic;font-weight:900;font-size:clamp(1.4rem,3vw,2.2rem);color:white;line-height:1.1}
+.wplaceholder{position:absolute;inset:0;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-end;gap:0.3rem;padding:1.3rem;pointer-events:none;background:linear-gradient(to top,rgba(0,0,0,0.8) 0%,transparent 60%);z-index:1}
+.wplay{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:52px;height:52px;border-radius:50%;background:rgba(0,255,136,0.15);border:1.5px solid rgba(0,255,136,0.5);display:flex;align-items:center;justify-content:center;font-size:1.2rem;color:var(--green);opacity:0;transition:opacity 0.25s;text-decoration:none;z-index:3}
+.wph-type{font-size:0.62rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:rgba(0,255,136,0.8)}
+.wph-title{font-family:'Rubik',sans-serif;font-style:italic;font-weight:900;font-size:0.82rem;color:white;line-height:1.2;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
 .wplaceholder svg{width:4rem;height:4rem;color:var(--green)}
 #process{background:var(--bg2)}
 .steps-grid{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--bf)}
@@ -183,12 +186,7 @@ footer{background:var(--dark);padding:2rem 3rem;display:flex;align-items:center;
   </div>
 </section>
 
-<div class="stats-bar">
-  <div class="stat reveal"><div class="stat-num" id="s1">…</div><div class="stat-label" id="l1">…</div></div>
-  <div class="stat reveal d1"><div class="stat-num" id="s2">…</div><div class="stat-label" id="l2">…</div></div>
-  <div class="stat reveal d2"><div class="stat-num" id="s3">…</div><div class="stat-label" id="l3">…</div></div>
-  <div class="stat reveal d3"><div class="stat-num" id="s4">…</div><div class="stat-label" id="l4">…</div></div>
-</div>
+<div class="stats-bar" id="stats-bar"></div>
 
 <section class="section" id="services">
   <div class="section-inner">
@@ -388,40 +386,67 @@ async function getThumbUrl(r) {
   return null;
 }
 
+let _renderToken = 0;
+
 function renderPortfolio(filter) {
+  const token = ++_renderToken;
   const items = filter === 'הכל' ? allPortfolio : allPortfolio.filter(r => r['סוג'] === filter);
   const grid = document.getElementById('works-grid');
 
-  // רינדור מיידי עם placeholder לכולם
-  grid.innerHTML = items.map((r, i) => {
+  // בנה רשימת "תאים" — זוגות של 9:16 נארזים יחד
+  const cells = [];
+  let verticalPair = [];
+  items.forEach((r, i) => {
     const ratio = r['יחס_תצוגה'] || '16:9';
-    const aspectRatio = ratio.replace(':', '/');
-    const bgStyle = `aspect-ratio:${aspectRatio};background:${CARD_BG[i % CARD_BG.length]}`;
-    return `
-    <div class="witem reveal" id="witem-${i}" style="${bgStyle}" data-idx="${i}">
-      <div class="wplaceholder">
-        <div class="wph-type">${r['סוג'] || ''}</div>
-        <div class="wph-title">${r['כותרת'] || ''}</div>
-      </div>
-      ${r['קישור_וידאו'] ? `<a class="wplay" href="${r['קישור_וידאו']}" target="_blank">&#9654;</a>` : ''}
-    </div>`;
+    const [rw, rh] = ratio.split(':').map(Number);
+    const isVertical = rh > rw;
+    if (isVertical) {
+      verticalPair.push({ r, i });
+      if (verticalPair.length === 2) {
+        cells.push({ type: 'pair', items: verticalPair });
+        verticalPair = [];
+      }
+    } else {
+      if (verticalPair.length === 1) {
+        cells.push({ type: 'pair', items: verticalPair });
+        verticalPair = [];
+      }
+      cells.push({ type: 'single', items: [{ r, i }] });
+    }
+  });
+  if (verticalPair.length === 1) cells.push({ type: 'pair', items: verticalPair });
+
+  grid.innerHTML = cells.map((cell, ci) => {
+    if (cell.type === 'single') {
+      const { r, i } = cell.items[0];
+      const ratio = (r['יחס_תצוגה'] || '16:9').replace(':', '/');
+      return `<div class="witem reveal" id="witem-${i}" style="background:${CARD_BG[i % CARD_BG.length]}">
+        <div class="wplaceholder">
+          <div class="wph-title">${r['כותרת'] || ''}</div>
+          <div class="wph-type">${r['סוג'] || ''}</div>
+        </div>
+        ${r['קישור_וידאו'] ? `<a class="wplay" href="${r['קישור_וידאו']}" target="_blank">&#9654;</a>` : ''}
+      </div>`;
+    } else {
+      // תא עם שניים (או אחד) של 9:16
+      const inner = cell.items.map(({ r, i }) => `
+        <div class="witem-half reveal" id="witem-${i}" style="background:${CARD_BG[i % CARD_BG.length]}">
+          <div class="wplaceholder">
+            <div class="wph-title">${r['כותרת'] || ''}</div>
+            <div class="wph-type">${r['סוג'] || ''}</div>
+          </div>
+          ${r['קישור_וידאו'] ? `<a class="wplay" href="${r['קישור_וידאו']}" target="_blank">&#9654;</a>` : ''}
+        </div>`).join('');
+      return `<div class="witem-pair">${inner}</div>`;
+    }
   }).join('');
 
-  grid.style.gridTemplateColumns = 'repeat(6,1fr)';
-  let col = 0;
-  grid.querySelectorAll('.witem').forEach((el, i) => {
-    const ratio = el.style.aspectRatio || '16/9';
-    const isVertical = ratio === '9/16';
-    const isFirst = col === 0;
-    const span = isVertical ? 1 : (i < 2 ? 3 : 2);
-    el.style.gridColumn = `span ${span}`;
-    col = (col + span) % 6;
-  });
   reObserve();
 
   // טעינת תמונות ברקע
   items.forEach(async (r, i) => {
     const thumb = await getThumbUrl(r);
+    if (token !== _renderToken) return; // בוטל
     if (!thumb) return;
     const el = document.getElementById(`witem-${i}`);
     if (!el) return;
@@ -455,12 +480,13 @@ async function loadAll() {
     });
 
     // STATS
-    סטטיסטיקות.forEach((r, i) => {
-      const n = document.getElementById(`s${i+1}`);
-      const l = document.getElementById(`l${i+1}`);
-      if (n) n.textContent = r['ערך']   || '';
-      if (l) l.textContent = r['תווית'] || '';
-    });
+    const statsBar = document.getElementById('stats-bar');
+    statsBar.style.gridTemplateColumns = `repeat(${סטטיסטיקות.length},1fr)`;
+    statsBar.innerHTML = סטטיסטיקות.map((r, i) => `
+      <div class="stat reveal${i > 0 ? ' d'+Math.min(i,3) : ''}">
+        <div class="stat-num">${r['ערך'] || ''}</div>
+        <div class="stat-label">${r['תווית'] || ''}</div>
+      </div>`).join('');
 
     // SERVICES
     document.getElementById('svc-grid').innerHTML = שירותים.map((r, i) => `
