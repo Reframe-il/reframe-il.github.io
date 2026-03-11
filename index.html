@@ -71,21 +71,36 @@ h2{font-family:'Rubik',sans-serif;font-style:italic;font-weight:900;font-size:cl
 .witem-pair{display:flex;gap:0.6rem}
 .witem-half{flex:1;border-radius:10px;overflow:hidden;position:relative;cursor:pointer;transition:transform 0.25s,box-shadow 0.25s;border:1px solid var(--bf);background-size:cover;background-position:center;min-height:220px}
 .witem:hover,.witem-half:hover{transform:scale(1.02);box-shadow:0 0 0 1px var(--green),0 16px 40px rgba(0,0,0,0.5)}
-.woverlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.85) 0%,transparent 55%);display:flex;flex-direction:column;justify-content:flex-end;padding:1rem}
-.wplay{position:absolute;bottom:0.8rem;left:0.8rem;width:32px;height:32px;border-radius:50%;background:rgba(0,255,136,0.15);border:1.5px solid rgba(0,255,136,0.5);display:flex;align-items:center;justify-content:center;font-size:0.75rem;color:var(--green);opacity:0;transition:opacity 0.25s;text-decoration:none;z-index:10}
+.woverlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.85) 0%,transparent 50%);display:flex;flex-direction:column;justify-content:flex-end;padding:0.75rem 0.75rem 2.8rem}
+.wviews{display:inline-flex;align-items:center;gap:0.3rem;background:rgba(0,0,0,0.55);border-radius:4px;padding:0.18rem 0.4rem;margin-bottom:0.3rem}
+.wviews svg{color:rgba(255,255,255,0.75);flex-shrink:0}
+.wviews span{font-size:0.65rem;font-weight:700;color:white;letter-spacing:0.5px}
+.wviews svg{width:11px!important;height:11px!important;flex-shrink:0}
+.witem-half .wph-title,.witem-half .wtitle{display:-webkit-box}
+.wtag{position:absolute;top:0.6rem;right:0.6rem;font-size:0.58rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--green);background:rgba(0,0,0,0.6);border:1px solid rgba(0,255,136,0.3);border-radius:4px;padding:0.18rem 0.45rem;z-index:5}
+.wtype{display:none}
+.wph-type{display:none}
+.wviews{display:inline-flex;align-items:center;gap:0.3rem;background:rgba(0,0,0,0.55);border-radius:4px;padding:0.18rem 0.4rem}
+.wviews svg{width:11px!important;height:11px!important;flex-shrink:0;color:rgba(255,255,255,0.75)}
+.wviews span{font-size:0.65rem;font-weight:700;color:white;letter-spacing:0.5px}
+.wbottom{position:absolute;bottom:0.7rem;left:0;right:0;display:flex;justify-content:space-between;align-items:center;padding:0 0.7rem;z-index:10}
+.wplay{width:28px;height:28px;border-radius:50%;background:rgba(0,255,136,0.15);border:1.5px solid rgba(0,255,136,0.5);display:flex;align-items:center;justify-content:center;font-size:0.65rem;color:var(--green);opacity:0;transition:opacity 0.25s;pointer-events:none}
 .witem:hover .wplay,.witem-half:hover .wplay{opacity:1}
 .witem:not([style*="background-image"]) .wplay,.witem-half:not([style*="background-image"]) .wplay{opacity:0.5}
-.witem:not([style*="background-image"]):hover .wplay,.witem-half:not([style*="background-image"]):hover .wplay{opacity:1}.wtitle{font-size:0.82rem;font-weight:800;color:white;line-height:1.2;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}.wtype{font-size:0.62rem;letter-spacing:1px;text-transform:uppercase;color:rgba(0,255,136,0.8);margin-top:0.25rem;font-weight:700}
+.witem:not([style*="background-image"]):hover .wplay,.witem-half:not([style*="background-image"]):hover .wplay{opacity:1}
+
+.wtitle{font-size:0.82rem;font-weight:800;color:white;line-height:1.2;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+.wtype{font-size:0.62rem;letter-spacing:1px;text-transform:uppercase;color:rgba(0,255,136,0.85);margin-top:0.2rem;font-weight:700}
 .svc-icon svg{width:2rem;height:2rem;color:var(--green)}
 .chip-icon svg{color:var(--green)}
 .soc svg{color:var(--muted)}
 .soc:hover svg{color:var(--green)}
 .tavatar svg{color:var(--muted)}
-.wplaceholder{position:absolute;inset:0;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-end;gap:0.3rem;padding:1.3rem;pointer-events:none;background:linear-gradient(to top,rgba(0,0,0,0.8) 0%,transparent 60%);z-index:1}
-.wplay{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:52px;height:52px;border-radius:50%;background:rgba(0,255,136,0.15);border:1.5px solid rgba(0,255,136,0.5);display:flex;align-items:center;justify-content:center;font-size:1.2rem;color:var(--green);opacity:0;transition:opacity 0.25s;text-decoration:none;z-index:3}
-.wph-type{font-size:0.62rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:rgba(0,255,136,0.8)}
+.wplaceholder{position:absolute;inset:0;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-end;gap:0.25rem;padding:0.75rem 0.75rem 2.8rem;pointer-events:none;background:linear-gradient(to top,rgba(0,0,0,0.8) 0%,transparent 55%);z-index:1}
+.wph-type{font-size:0.62rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:rgba(0,255,136,0.85)}
 .wph-title{font-family:'Rubik',sans-serif;font-style:italic;font-weight:900;font-size:0.82rem;color:white;line-height:1.2;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
-.wplaceholder svg{width:4rem;height:4rem;color:var(--green)}
+.wplaceholder>svg{width:3rem;height:3rem;color:var(--green)}
+.wviews svg{width:12px!important;height:12px!important;flex-shrink:0}
 #process{background:var(--bg2)}
 .steps-grid{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--bf)}
 .step{padding:2.5rem 2rem;border-left:1px solid var(--bf);transition:background 0.2s;position:relative}.step:first-child{border-left:none}
@@ -94,18 +109,20 @@ h2{font-family:'Rubik',sans-serif;font-style:italic;font-weight:900;font-size:cl
 .step:hover::before{transform:scaleX(1);transform-origin:left}
 .step-num{font-family:'Rubik',sans-serif;font-style:italic;font-size:3.2rem;font-weight:900;color:rgba(0,255,136,0.12);line-height:1;margin-bottom:1rem;direction:ltr}
 .step-title{font-size:1.05rem;font-weight:800;margin-bottom:0.5rem;color:white}.step-desc{font-size:0.87rem;color:var(--muted);line-height:1.6}
-#clients{background:var(--bg2);padding:4rem 3rem;border-top:1px solid var(--bf);border-bottom:1px solid var(--bf)}
-#clients .eyebrow{display:block;margin-bottom:2.5rem;text-align:center}
+#clients{background:var(--bg);padding:5rem 3rem;border-top:1px solid var(--bf);border-bottom:1px solid var(--bf)}
+#clients .eyebrow{display:block;margin-bottom:3rem;text-align:center}
 #clients .section-inner{max-width:1200px;margin:0 auto}
-.clients-grid{display:grid;gap:1px;background:var(--bf)}
-.client-item{background:var(--bg2);padding:2rem 1.5rem;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.8rem;transition:background 0.2s;min-height:120px;text-align:center}
-.client-item:hover{background:var(--bg3)}
-.client-name{font-family:'Rubik',sans-serif;font-style:italic;font-weight:900;font-size:1.2rem;color:rgba(255,255,255,0.85);transition:color 0.25s}
-.client-item:hover .client-name{color:white}
-.client-followers{display:flex;align-items:center;gap:0.4rem;justify-content:center}
+.clients-grid{display:flex;flex-wrap:wrap;gap:1.5rem;justify-content:center;max-width:1200px;margin:0 auto}
+.client-item{background:var(--bg2);border:1px solid var(--bf);border-radius:14px;padding:1.8rem 1.5rem;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.6rem;transition:background 0.25s,border-color 0.25s,transform 0.25s;text-align:center;position:relative;overflow:hidden;width:calc(33.333% - 1rem);min-width:200px;box-sizing:border-box}
+.client-item::before{content:'';position:absolute;top:0;left:10%;right:10%;height:2px;background:linear-gradient(90deg,transparent,var(--green),transparent);opacity:0;transition:opacity 0.25s}
+.client-item:hover{background:var(--bg3);border-color:rgba(0,255,136,0.3);transform:translateY(-3px)}
+.client-item:hover::before{opacity:1}
+.client-name{font-family:'Rubik',sans-serif;font-style:italic;font-weight:900;font-size:1.25rem;color:white;transition:color 0.25s}
+.client-item:hover .client-name{color:var(--green)}
+.client-followers{display:flex;align-items:center;gap:0.35rem;justify-content:center;margin-top:0.2rem}
 .client-followers svg{color:var(--green);flex-shrink:0}
-.client-followers-num{font-family:'Rubik',sans-serif;font-style:italic;font-weight:900;font-size:1rem;color:var(--green)}
-.client-followers-label{font-size:0.7rem;color:var(--muted);font-weight:600}
+.client-followers-num{font-family:'Rubik',sans-serif;font-style:italic;font-weight:900;font-size:1.1rem;color:var(--green)}
+.client-followers-label{font-size:0.65rem;color:var(--muted);font-weight:600;letter-spacing:1px;text-transform:uppercase}
 #testi{background:var(--bg2)}
 .tgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--bf);margin-top:3rem}
 .tcard{background:var(--bg2);padding:2.2rem;transition:background 0.2s;position:relative;overflow:hidden}
@@ -192,14 +209,14 @@ footer{background:var(--dark);padding:2rem 3rem;display:flex;align-items:center;
   <div class="section-inner">
     <p class="eyebrow reveal">מה אני עושה</p>
     <h2 class="reveal">עריכת וידאו לכל מטרה</h2>
-    <p class="section-desc reveal">כל שירות מותאם בדיוק למה שהלקוח צריך,<br/>מהרעיון ועד המסך.</p>
+    <p class="section-desc reveal">עריכת וידאו ליוצרים ולמותגים עם תוכן איכותי – וולוגים, סדרות רשת וסרטוני תדמית בעריכה שמותאמת לקהל גדול</p>
     <div class="svc-grid" id="svc-grid"></div>
   </div>
 </section>
 
 <section id="clients">
   <div class="section-inner">
-    <p class="eyebrow reveal">בין לקוחותי</p>
+    <p class="eyebrow reveal">עבדתי עם</p>
     <div class="clients-grid" id="clients-grid"></div>
   </div>
 </section>
@@ -416,27 +433,30 @@ function renderPortfolio(filter) {
   });
   if (verticalPair.length === 1) cells.push({ type: 'pair', items: verticalPair });
 
+  const eyeSVG = `<svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.75)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="12" height="12"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>`;
+  const bottomBar = r => `<div class="wbottom">${r['צפיות'] ? `<div class="wviews">${eyeSVG}<span>${r['צפיות']}</span></div>` : '<div></div>'}${r['קישור_וידאו'] ? '<div class="wplay">&#9654;</div>' : '<div></div>'}</div>`;
+
   grid.innerHTML = cells.map((cell, ci) => {
     if (cell.type === 'single') {
       const { r, i } = cell.items[0];
       const ratio = (r['יחס_תצוגה'] || '16:9').replace(':', '/');
-      return `<div class="witem reveal" id="witem-${i}" style="background:${CARD_BG[i % CARD_BG.length]}">
+      return `<a class="witem reveal" id="witem-${i}" style="background:${CARD_BG[i % CARD_BG.length]};text-decoration:none;display:block;" ${r['קישור_וידאו'] ? `href="${r['קישור_וידאו']}" target="_blank"` : ''}>
+        ${r['סוג'] ? `<div class="wtag">${r['סוג']}</div>` : ''}
         <div class="wplaceholder">
           <div class="wph-title">${r['כותרת'] || ''}</div>
-          <div class="wph-type">${r['סוג'] || ''}</div>
         </div>
-        ${r['קישור_וידאו'] ? `<a class="wplay" href="${r['קישור_וידאו']}" target="_blank">&#9654;</a>` : ''}
-      </div>`;
+        ${bottomBar(r)}
+      </a>`;
     } else {
       // תא עם שניים (או אחד) של 9:16
       const inner = cell.items.map(({ r, i }) => `
-        <div class="witem-half reveal" id="witem-${i}" style="background:${CARD_BG[i % CARD_BG.length]}">
+        <a class="witem-half reveal" id="witem-${i}" style="background:${CARD_BG[i % CARD_BG.length]};text-decoration:none;display:block;" ${r['קישור_וידאו'] ? `href="${r['קישור_וידאו']}" target="_blank"` : ''}>
+          ${r['סוג'] ? `<div class="wtag">${r['סוג']}</div>` : ''}
           <div class="wplaceholder">
             <div class="wph-title">${r['כותרת'] || ''}</div>
-            <div class="wph-type">${r['סוג'] || ''}</div>
           </div>
-          ${r['קישור_וידאו'] ? `<a class="wplay" href="${r['קישור_וידאו']}" target="_blank">&#9654;</a>` : ''}
-        </div>`).join('');
+          ${bottomBar(r)}
+        </a>`).join('');
       return `<div class="witem-pair">${inner}</div>`;
     }
   }).join('');
@@ -454,10 +474,21 @@ function renderPortfolio(filter) {
     el.style.backgroundSize = 'cover';
     el.style.backgroundPosition = 'center';
     el.querySelector('.wplaceholder')?.remove();
+    if (r['קישור_וידאו'] && el.tagName !== 'A') {
+      el.style.cursor = 'pointer';
+      el.onclick = () => window.open(r['קישור_וידאו'], '_blank');
+    }
     if (!el.querySelector('.woverlay')) {
       const ov = document.createElement('div');
       ov.className = 'woverlay';
-      ov.innerHTML = `<div class="wtitle">${r['כותרת'] || ''}</div><div class="wtype">${r['סוג'] || ''}</div>`;
+      if (r['סוג'] && !el.querySelector('.wtag')) { const tg=document.createElement('div'); tg.className='wtag'; tg.textContent=r['סוג']; el.appendChild(tg); }
+      ov.innerHTML = `<div class="wtitle">${r['כותרת'] || ''}</div>`;
+      if (!el.querySelector('.wbottom')) {
+        const bb = document.createElement('div'); bb.className='wbottom';
+        const eyeSvg = '<svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.75)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="11" height="11"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>';
+        bb.innerHTML = (r['צפיות'] ? `<div class="wviews">${eyeSvg}<span>${r['צפיות']}</span></div>` : '<div></div>') + (r['קישור_וידאו'] ? '<div class="wplay">&#9654;</div>' : '<div></div>');
+        el.appendChild(bb);
+      }
       el.appendChild(ov);
     }
   });
@@ -484,9 +515,41 @@ async function loadAll() {
     statsBar.style.gridTemplateColumns = `repeat(${סטטיסטיקות.length},1fr)`;
     statsBar.innerHTML = סטטיסטיקות.map((r, i) => `
       <div class="stat reveal${i > 0 ? ' d'+Math.min(i,3) : ''}">
-        <div class="stat-num">${r['ערך'] || ''}</div>
+        <div class="stat-num" data-target="${r['ערך'] || ''}">0</div>
         <div class="stat-label">${r['תווית'] || ''}</div>
       </div>`).join('');
+
+    // count-up animation
+    function parseStatValue(val) {
+      if (!val) return { num: 0, suffix: '' };
+      const match = String(val).match(/^([\d,.]+)(.*)$/);
+      if (!match) return { num: 0, suffix: val };
+      return { num: parseFloat(match[1].replace(/,/g, '')), suffix: match[2].trim() };
+    }
+    function animateCountUp(el) {
+      const { num, suffix } = parseStatValue(el.dataset.target);
+      const duration = 1800;
+      const start = performance.now();
+      function update(now) {
+        const elapsed = now - start;
+        const progress = Math.min(elapsed / duration, 1);
+        const ease = 1 - Math.pow(1 - progress, 3);
+        const current = Math.round(ease * num);
+        el.textContent = current.toLocaleString() + (suffix ? suffix : '');
+        if (progress < 1) requestAnimationFrame(update);
+        else el.textContent = el.dataset.target;
+      }
+      requestAnimationFrame(update);
+    }
+    const statsObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.querySelectorAll('.stat-num[data-target]').forEach(animateCountUp);
+          statsObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.4 });
+    statsObserver.observe(statsBar);
 
     // SERVICES
     document.getElementById('svc-grid').innerHTML = שירותים.map((r, i) => `
@@ -514,7 +577,16 @@ async function loadAll() {
 
     // CLIENTS
     const cGrid = document.getElementById('clients-grid');
-    cGrid.style.gridTemplateColumns = `repeat(${Math.min(לקוחות.length, 6)},1fr)`;
+    const n = לקוחות.length;
+    // חלוקה חכמה: זוגי = שורות שוות, אי-זוגי = שורה ראשונה גדולה יותר
+    let perRow;
+    if (n <= 3) perRow = n;
+    else if (n === 4) perRow = 2;       // 2+2
+    else if (n === 5) perRow = 3;       // 3+2
+    else if (n === 6) perRow = 3;       // 3+3
+    else if (n === 8) perRow = 4;       // 4+4
+    else perRow = Math.ceil(n / 2);
+    const cardWidth = `calc(${100 / perRow}% - ${(perRow - 1) * 1.5 / perRow}rem)`;
     cGrid.innerHTML = לקוחות.map(r => `
       <div class="client-item reveal">
         <span class="client-name">${r['שם'] || ''}</span>
@@ -524,6 +596,7 @@ async function loadAll() {
           <span class="client-followers-label">עוקבים</span>
         </div>` : ''}
       </div>`).join('');
+    cGrid.querySelectorAll('.client-item').forEach(el => el.style.width = cardWidth);
 
     // TESTIMONIALS
     document.getElementById('tgrid').innerHTML = המלצות.map((r, i) => `
