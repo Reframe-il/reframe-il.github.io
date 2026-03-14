@@ -46,6 +46,11 @@ h1 .acc{color:var(--green)}
 @keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 .stats-bar{display:grid;border-bottom:1px solid var(--bf);background:var(--bg)}
 .stat{padding:2.2rem 1rem;text-align:center;border-left:1px solid rgba(0,255,136,0.25)}.stat:last-child{border-left:none}
+.stat-hero{background:rgba(0,255,136,0.04)}
+.stat-hero .stat-num{font-size:3.8rem;text-shadow:0 0 30px rgba(0,255,136,0.5)}
+.stat-hero .stat-icon{background:rgba(0,255,136,0.15);border-color:rgba(0,255,136,0.4)}
+.stat-icon{width:40px;height:40px;margin:0 auto 0.8rem;display:flex;align-items:center;justify-content:center;background:rgba(0,255,136,0.08);border-radius:10px;border:1px solid rgba(0,255,136,0.2)}
+.stat-icon svg{color:var(--green)}
 .stat-num{font-family:'Rubik',sans-serif;font-style:italic;font-weight:900;font-size:2.8rem;line-height:1;color:var(--green)}
 .stat-label{font-size:0.78rem;font-weight:700;color:var(--muted);margin-top:0.3rem}
 .section{padding:6rem 3rem}.section-inner{max-width:1200px;margin:0 auto}
@@ -66,10 +71,16 @@ h2{font-family:'Rubik',sans-serif;font-style:italic;font-weight:900;font-size:cl
 .filter-tabs{display:flex;gap:0.5rem;flex-wrap:wrap}
 .ftab{background:transparent;border:1px solid var(--bf);color:var(--muted);padding:0.4rem 1rem;border-radius:100px;font-family:'Heebo',sans-serif;font-size:0.82rem;font-weight:700;cursor:pointer;transition:all 0.2s}
 .ftab.active,.ftab:hover{background:var(--green);color:#000;border-color:var(--green)}
-.works-grid{display:grid;gap:0.6rem;grid-template-columns:repeat(4,1fr);grid-auto-rows:220px}
+.works-grid{display:grid;gap:0.6rem;grid-template-columns:repeat(4,1fr);grid-auto-rows:220px;justify-content:center;justify-items:stretch;margin:0 auto}
 .witem{border-radius:10px;overflow:hidden;position:relative;cursor:pointer;transition:transform 0.25s,box-shadow 0.25s;border:1px solid var(--bf);background-size:cover;background-position:center}
 .witem-pair{display:flex;gap:0.6rem}
 .witem-half{flex:1;border-radius:10px;overflow:hidden;position:relative;cursor:pointer;transition:transform 0.25s,box-shadow 0.25s;border:1px solid var(--bf);background-size:cover;background-position:center;min-height:220px}
+.witem-half-filler{flex:1}
+.cat-card{border-radius:14px;overflow:hidden;position:relative;cursor:pointer;transition:transform 0.25s,box-shadow 0.25s;border:1px solid var(--bf)}
+.cat-card:hover{transform:scale(1.02);box-shadow:0 0 0 1px var(--green),0 16px 40px rgba(0,0,0,0.5)}
+.cat-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.9) 0%,rgba(0,0,0,0.2) 60%);display:flex;flex-direction:column;justify-content:flex-end;padding:1.5rem;gap:0.3rem}
+.cat-count{font-size:0.65rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(0,255,136,0.8)}
+.cat-name{font-family:'Rubik',sans-serif;font-style:italic;font-weight:900;font-size:1.8rem;color:white}
 .witem:hover,.witem-half:hover{transform:scale(1.02);box-shadow:0 0 0 1px var(--green),0 16px 40px rgba(0,0,0,0.5)}
 .woverlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.85) 0%,transparent 50%);display:flex;flex-direction:column;justify-content:flex-end;padding:0.75rem 0.75rem 2.8rem}
 .wviews{display:inline-flex;align-items:center;gap:0.3rem;background:rgba(0,0,0,0.55);border-radius:4px;padding:0.18rem 0.4rem;margin-bottom:0.3rem}
@@ -119,19 +130,24 @@ h2{font-family:'Rubik',sans-serif;font-style:italic;font-weight:900;font-size:cl
 .client-item:hover::before{opacity:1}
 .client-name{font-family:'Rubik',sans-serif;font-style:italic;font-weight:900;font-size:1.25rem;color:white;transition:color 0.25s}
 .client-item:hover .client-name{color:var(--green)}
+.client-avatar{width:56px;height:56px;border-radius:50%;background:var(--bg3);border:2px solid var(--border);display:flex;align-items:center;justify-content:center;overflow:hidden;flex-shrink:0;margin-bottom:0.2rem}
+.client-avatar svg{color:var(--muted)}
+.client-clickable{cursor:pointer}
+.client-hint{font-size:0.6rem;color:rgba(0,255,136,0.6);letter-spacing:1px;text-transform:uppercase;margin-top:0.3rem;opacity:0;transition:opacity 0.25s}
+.client-clickable:hover .client-hint{opacity:1}
 .client-followers{display:flex;align-items:center;gap:0.35rem;justify-content:center;margin-top:0.2rem}
 .client-followers svg{color:var(--green);flex-shrink:0}
 .client-followers-num{font-family:'Rubik',sans-serif;font-style:italic;font-weight:900;font-size:1.1rem;color:var(--green)}
 .client-followers-label{font-size:0.65rem;color:var(--muted);font-weight:600;letter-spacing:1px;text-transform:uppercase}
 #testi{background:var(--bg2)}
 .tgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--bf);margin-top:3rem}
-.tcard{background:var(--bg2);padding:2.2rem;transition:background 0.2s;position:relative;overflow:hidden}
+.tcard{background:var(--bg2);padding:2.2rem;transition:background 0.2s;position:relative;overflow:hidden;display:flex;flex-direction:column}
 .tcard:hover{background:var(--bg3)}
 .tcard::before{content:'"';position:absolute;top:-10px;right:1.5rem;font-family:'Rubik',sans-serif;font-style:italic;font-weight:900;font-size:8rem;color:rgba(0,255,136,0.06);line-height:1;pointer-events:none}
 .tstars{color:var(--green);font-size:0.85rem;letter-spacing:2px;margin-bottom:1rem;direction:ltr}
-.ttext{color:var(--muted);font-size:0.92rem;line-height:1.7;margin-bottom:1.5rem;position:relative;z-index:1}
-.tauthor{display:flex;align-items:center;gap:0.8rem}
-.tavatar{width:40px;height:40px;border-radius:50%;background:var(--bg3);border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:1.2rem}
+.ttext{color:var(--muted);font-size:0.92rem;line-height:1.7;margin-bottom:1.5rem;position:relative;z-index:1;flex:1}
+.tauthor{display:flex;align-items:center;gap:0.8rem;margin-top:auto;padding-top:1rem;border-top:1px solid var(--bf)}
+.tavatar{width:40px;height:40px;border-radius:50%;background:var(--bg3);border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:1.2rem;overflow:hidden;flex-shrink:0}
 .tname{font-weight:800;color:white;font-size:0.92rem}.trole{font-size:0.78rem;color:var(--muted)}
 #contact{background:var(--bg)}
 .cgrid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}
@@ -168,12 +184,14 @@ footer{background:var(--dark);padding:2rem 3rem;display:flex;align-items:center;
   footer{flex-direction:column;text-align:center}.form-row{grid-template-columns:1fr}
 }
 </style>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script>emailjs.init("x9zNltCyqwlowfSOg");</script>
 </head>
 <body>
 
 <nav>
   <a href="#" class="logo"><span class="br">[</span><span class="r">R</span><span class="br">]</span><span class="rest">eframe</span><span class="dot"></span></a>
-  <ul class="nav-links">
+  <ul class="nav-links" id="nav-links">
     <li><a href="#services">שירותים</a></li>
     <li><a href="#portfolio">עבודות</a></li>
     <li><a href="#process">תהליך</a></li>
@@ -188,11 +206,11 @@ footer{background:var(--dark);padding:2rem 3rem;display:flex;align-items:center;
   <div class="hero-bg-word">REFRAME</div>
   <div class="hero-content">
     <div class="hero-tag"><span class="blink"></span>REFRAME &middot; Video Editing</div>
-    <h1><span class="acc hero-word">עריכה</span><br/><span class="hero-rest">זה כל הסיפור</span></h1>
-    <p class="hero-sub">סרטים, פודקאסטים, תוכן לרשתות וקליפים. אני מביא את הסיפור שלך לחיים עם עריכה שמרגישה נכון, תמיד.</p>
+    <h1><span class="acc hero-word" id="hero-word-el">עריכה</span><br/><span class="hero-rest" id="hero-sub-el">זה כל הסיפור</span></h1>
+    <p class="hero-sub" id="hero-desc-el">סרטים, פודקאסטים, תוכן לרשתות וקליפים. אני מביא את הסיפור שלך לחיים עם עריכה שמרגישה נכון, תמיד.</p>
     <div class="hero-ctas">
-      <a href="#portfolio" class="btn-primary">&#9654;&nbsp;צפה בעבודות</a>
-      <a href="#contact" class="btn-ghost">דבר איתי</a>
+      <a href="#portfolio" class="btn-primary" id="hero-btn1-el">&#9654;&nbsp;צפה בעבודות</a>
+      <a href="#contact" class="btn-ghost" id="hero-btn2-el">דבר איתי</a>
     </div>
   </div>
   <div class="ticker-wrap">
@@ -207,16 +225,16 @@ footer{background:var(--dark);padding:2rem 3rem;display:flex;align-items:center;
 
 <section class="section" id="services">
   <div class="section-inner">
-    <p class="eyebrow reveal">מה אני עושה</p>
-    <h2 class="reveal">עריכת וידאו לכל מטרה</h2>
-    <p class="section-desc reveal">עריכת וידאו ליוצרים ולמותגים עם תוכן איכותי – וולוגים, סדרות רשת וסרטוני תדמית בעריכה שמותאמת לקהל גדול</p>
+    <p class="eyebrow reveal" id="svc-eyebrow-el">מה אני עושה</p>
+    <h2 class="reveal" id="svc-title-el">עריכת וידאו לכל מטרה</h2>
+    <p class="section-desc reveal" id="svc-desc-el">עריכת וידאו ליוצרים ולמותגים עם תוכן איכותי – וולוגים, סדרות רשת וסרטוני תדמית בעריכה שמותאמת לקהל גדול</p>
     <div class="svc-grid" id="svc-grid"></div>
   </div>
 </section>
 
 <section id="clients">
   <div class="section-inner">
-    <p class="eyebrow reveal">עבדתי עם</p>
+    <p class="eyebrow reveal" id="clients-eyebrow-el">עבדתי עם</p>
     <div class="clients-grid" id="clients-grid"></div>
   </div>
 </section>
@@ -224,18 +242,28 @@ footer{background:var(--dark);padding:2rem 3rem;display:flex;align-items:center;
 <section class="section" id="portfolio">
   <div class="section-inner">
     <div class="port-head">
-      <div><p class="eyebrow reveal">עבודות נבחרות</p><h2 class="reveal">פורטפוליו</h2></div>
+      <div><p class="eyebrow reveal" id="portfolio-eyebrow-el">פורטפוליו</p><h2 class="reveal" id="portfolio-title-el">עבודות נבחרות</h2></div>
       <div class="filter-tabs" id="filter-tabs"></div>
     </div>
     <div class="works-grid" id="works-grid"></div>
   </div>
 </section>
 
+<div id="pmodal" onclick="if(event.target===this)closeModal()" style="display:none;position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,0.88);backdrop-filter:blur(8px);overflow-y:auto;padding:2rem 1.5rem">
+  <div style="max-width:1200px;margin:0 auto">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:2rem;position:sticky;top:0;background:rgba(6,10,7,0.9);padding:1rem 0;z-index:2;backdrop-filter:blur(4px)">
+      <h3 id="pmodal-title" style="font-family:'Rubik',sans-serif;font-style:italic;font-weight:900;font-size:1.8rem;color:white;margin:0"></h3>
+      <button onclick="closeModal()" style="background:none;border:1px solid rgba(255,255,255,0.2);border-radius:8px;color:white;padding:0.5rem 1.2rem;cursor:pointer;font-size:0.9rem;font-family:'Heebo',sans-serif;transition:border-color 0.2s,color 0.2s" onmouseover="this.style.borderColor='#00ff88';this.style.color='#00ff88'" onmouseout="this.style.borderColor='rgba(255,255,255,0.2)';this.style.color='white'">✕ סגור</button>
+    </div>
+    <div class="works-grid" id="pmodal-grid"></div>
+  </div>
+</div>
+
 <section class="section" id="process">
   <div class="section-inner">
-    <p class="eyebrow reveal">איך זה עובד</p>
-    <h2 class="reveal">ארבעה צעדים<br/>מהרעיון למסך</h2>
-    <p class="section-desc reveal">תהליך שקוף, מהיר ובלי הפתעות.</p>
+    <p class="eyebrow reveal" id="process-eyebrow-el">איך זה עובד</p>
+    <h2 class="reveal"><span id="process-title1-el">ארבעה צעדים</span><br/><span id="process-title2-el">מהרעיון למסך</span></h2>
+    <p class="section-desc reveal" id="process-desc-el">תהליך שקוף, מהיר ובלי הפתעות.</p>
     <div class="steps-grid">
       <div class="step reveal"><div class="step-num">01</div><h4 class="step-title">שיחת היכרות</h4><p class="step-desc">מבינים יחד מה הפרויקט, מה הסגנון, מה המטרה ומה לוח הזמנים.</p></div>
       <div class="step reveal d1"><div class="step-num">02</div><h4 class="step-title">הצעת מחיר</h4><p class="step-desc">הצעה מפורטת ומחייבת — מחיר ברור, לו"ז ברור. בלי הפתעות בסוף.</p></div>
@@ -248,8 +276,8 @@ footer{background:var(--dark);padding:2rem 3rem;display:flex;align-items:center;
 
 <section class="section" id="testi">
   <div class="section-inner">
-    <p class="eyebrow reveal">לקוחות מדברים</p>
-    <h2 class="reveal">מה אומרים עליי</h2>
+    <p class="eyebrow reveal" id="testi-eyebrow-el">לקוחות מדברים</p>
+    <h2 class="reveal" id="testi-title-el">מה אומרים עליי</h2>
     <div class="tgrid" id="tgrid"></div>
   </div>
 </section>
@@ -258,29 +286,29 @@ footer{background:var(--dark);padding:2rem 3rem;display:flex;align-items:center;
   <div class="section-inner">
     <div class="cgrid">
       <div>
-        <p class="eyebrow reveal">בואו נעבוד יחד</p>
-        <div class="big-cta reveal">יש לך<br/>פרויקט?<br/>בוא נעשה<br/>לו <span class="acc">Reframe.</span></div>
+        <p class="eyebrow reveal" id="contact-title1-el">בואו נעבוד יחד</p>
+        <div class="big-cta reveal"><span id="big-cta-el">יש לך<br/>פרויקט?<br/>בוא נעשה<br/>לו </span><span class="acc">Reframe.</span></div>
         <div class="chips">
-          <a class="chip reveal" id="chip-email" href="#" style="text-decoration:none"><div class="chip-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></div><div><div class="chip-label">אימייל</div><div class="chip-val" id="contact-email">…</div></div></a>
-          <a class="chip reveal d1" id="chip-phone" href="#" target="_blank" style="text-decoration:none"><div class="chip-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg></div><div><div class="chip-label">וואטסאפ</div><div class="chip-val" id="contact-phone">…</div></div></a>
-          <div class="chip reveal d2"><div class="chip-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg></div><div><div class="chip-label">זמן תגובה</div><div class="chip-val">עד 24 שעות</div></div></div>
+          <a class="chip reveal" id="chip-email" href="#" style="text-decoration:none"><div class="chip-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></div><div><div class="chip-label" id="contact-email-label-el">אימייל</div><div class="chip-val" id="contact-email">…</div></div></a>
+          <a class="chip reveal d1" id="chip-phone" href="#" target="_blank" style="text-decoration:none"><div class="chip-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg></div><div><div class="chip-label" id="contact-wa-label-el">וואטסאפ</div><div class="chip-val" id="contact-phone">…</div></div></a>
+          <div class="chip reveal d2"><div class="chip-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg></div><div><div class="chip-label" id="contact-time-label-el">זמן תגובה</div><div class="chip-val" id="contact-time-val-el">עד 24 שעות</div></div></div>
         </div>
       </div>
       <div class="form-box reveal">
         <div class="form-row">
-          <div class="fg"><label>שם מלא</label><input type="text" placeholder="ישראל ישראלי"/></div>
-          <div class="fg"><label>טלפון</label><input type="tel" placeholder="05X-XXX-XXXX"/></div>
+          <div class="fg"><label id="form-name-el">שם מלא</label><input type="text" id="form-input-name" placeholder="ישראל ישראלי"/></div>
+          <div class="fg"><label id="form-phone-el">טלפון</label><input type="tel" id="form-input-phone" placeholder="05X-XXX-XXXX"/></div>
         </div>
-        <div class="fg"><label>אימייל</label><input type="email" placeholder="you@example.com"/></div>
-        <div class="fg"><label>סוג הפרויקט</label>
-          <select>
+        <div class="fg"><label id="form-email-el">אימייל</label><input type="email" id="form-input-email" placeholder="you@example.com"/></div>
+        <div class="fg"><label id="form-project-el">סוג הפרויקט</label>
+          <select id="project-type">
             <option value="">בחר סוג פרויקט...</option>
             <option>סרט / תוכנית</option><option>פודקאסט</option>
             <option>תוכן לרשתות חברתיות</option><option>קליפ / פרסומת</option><option>אחר</option>
           </select>
         </div>
-        <div class="fg"><label>ספר לי על הפרויקט</label><textarea rows="4" placeholder="מה הפרויקט? מה לוח הזמנים? יש חומרי גלם?"></textarea></div>
-        <button class="sbtn" onclick="this.textContent='&#10003; נשלח! אחזור אליך בקרוב'">בואו נעבוד יחד &#9889;</button>
+        <div class="fg"><label id="form-msg-el">ספר לי על הפרויקט</label><textarea id="form-input-msg" rows="4" placeholder="מה הפרויקט? מה לוח הזמנים? יש חומרי גלם?"></textarea></div>
+        <button class="sbtn" id="form-submit-btn" onclick="submitForm(this)">בואו נעבוד יחד &#9889;</button>
       </div>
     </div>
   </div>
@@ -288,7 +316,7 @@ footer{background:var(--dark);padding:2rem 3rem;display:flex;align-items:center;
 
 <footer>
   <a href="#" class="logo"><span class="br">[</span><span class="r">R</span><span class="br">]</span><span class="rest">eframe</span><span class="dot"></span></a>
-  <div class="fcopy">&#169; 2025 Reframe &middot; עמית &middot; כל הזכויות שמורות</div>
+  <div class="fcopy"><span id="footer-text">&#169; 2025 Reframe &middot; עמית &middot; כל הזכויות שמורות</span></div>
   <div class="socials">
     <a href="#" class="soc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
     <a href="#" class="soc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a>
@@ -365,6 +393,24 @@ function getDriveFileId(url) {
   const m = url.match(/\/file\/d\/([a-zA-Z0-9_-]+)/);
   return m ? m[1] : null;
 }
+function getStatIcon(label) {
+  const s = (w,h,d) => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="${w}" height="${h}">${d}</svg>`;
+  if (label.includes('נערכ') || label === 'סרטונים שנערכו')
+    return s(20,20,'<polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/>');
+  if (label.includes('לקוח') || label.includes('יוצר'))
+  if (label.includes('לקוח') || label.includes('יוצר'))
+    return s(20,20,'<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>');
+  if (label.includes('צפי'))
+    return s(20,20,'<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>');
+  if (label.includes('ניסיון') || label.includes('שנות'))
+    // מדליה / גביע - ניסיון
+    return s(20,20,'<circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/>');
+  if (label.includes('תגובה') || label.includes('זמן'))
+  if (label.includes('תגובה') || label.includes('זמן'))
+    return s(20,20,'<path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/>');
+  return s(20,20,'<circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>');
+}
+
 const CARD_BG = [
   'linear-gradient(135deg,#001a0d,#004020)',
   'linear-gradient(135deg,#001515,#003030)',
@@ -405,12 +451,9 @@ async function getThumbUrl(r) {
 
 let _renderToken = 0;
 
-function renderPortfolio(filter) {
+function renderGrid(items, grid, idPrefix) {
   const token = ++_renderToken;
-  const items = filter === 'הכל' ? allPortfolio : allPortfolio.filter(r => r['סוג'] === filter);
-  const grid = document.getElementById('works-grid');
-
-  // בנה רשימת "תאים" — זוגות של 9:16 נארזים יחד
+  const myToken = token;
   const cells = [];
   let verticalPair = [];
   items.forEach((r, i) => {
@@ -431,16 +474,19 @@ function renderPortfolio(filter) {
       cells.push({ type: 'single', items: [{ r, i }] });
     }
   });
-  if (verticalPair.length === 1) cells.push({ type: 'pair', items: verticalPair });
+  if (verticalPair.length === 1) cells.push({ type: 'pair', items: verticalPair, lone: true });
 
   const eyeSVG = `<svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.75)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="12" height="12"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>`;
   const bottomBar = r => `<div class="wbottom">${r['צפיות'] ? `<div class="wviews">${eyeSVG}<span>${r['צפיות']}</span></div>` : '<div></div>'}${r['קישור_וידאו'] ? '<div class="wplay">&#9654;</div>' : '<div></div>'}</div>`;
 
+  grid.style.gridTemplateColumns = `repeat(${Math.min(cells.length, 4)}, 1fr)`;
+  grid.style.maxWidth = `${Math.min(cells.length, 4) * 25}%`;
+  grid.style.margin = '0 auto';
   grid.innerHTML = cells.map((cell, ci) => {
     if (cell.type === 'single') {
       const { r, i } = cell.items[0];
       const ratio = (r['יחס_תצוגה'] || '16:9').replace(':', '/');
-      return `<a class="witem reveal" id="witem-${i}" style="background:${CARD_BG[i % CARD_BG.length]};text-decoration:none;display:block;" ${r['קישור_וידאו'] ? `href="${r['קישור_וידאו']}" target="_blank"` : ''}>
+      return `<a class="witem reveal" id="${idPrefix}-${i}" style="background:${CARD_BG[i % CARD_BG.length]};text-decoration:none;display:block;" ${r['קישור_וידאו'] ? `href="${r['קישור_וידאו']}" target="_blank"` : ''}>
         ${r['סוג'] ? `<div class="wtag">${r['סוג']}</div>` : ''}
         <div class="wplaceholder">
           <div class="wph-title">${r['כותרת'] || ''}</div>
@@ -450,14 +496,14 @@ function renderPortfolio(filter) {
     } else {
       // תא עם שניים (או אחד) של 9:16
       const inner = cell.items.map(({ r, i }) => `
-        <a class="witem-half reveal" id="witem-${i}" style="background:${CARD_BG[i % CARD_BG.length]};text-decoration:none;display:block;" ${r['קישור_וידאו'] ? `href="${r['קישור_וידאו']}" target="_blank"` : ''}>
+        <a class="witem-half reveal" id="${idPrefix}-${i}" style="background:${CARD_BG[i % CARD_BG.length]};text-decoration:none;display:block;" ${r['קישור_וידאו'] ? `href="${r['קישור_וידאו']}" target="_blank"` : ''}>
           ${r['סוג'] ? `<div class="wtag">${r['סוג']}</div>` : ''}
           <div class="wplaceholder">
             <div class="wph-title">${r['כותרת'] || ''}</div>
           </div>
           ${bottomBar(r)}
         </a>`).join('');
-      return `<div class="witem-pair">${inner}</div>`;
+      return `<div class="witem-pair">${inner}${cell.lone ? '<div class="witem-half-filler"></div>' : ''}</div>`;
     }
   }).join('');
 
@@ -466,9 +512,9 @@ function renderPortfolio(filter) {
   // טעינת תמונות ברקע
   items.forEach(async (r, i) => {
     const thumb = await getThumbUrl(r);
-    if (token !== _renderToken) return; // בוטל
+    if (myToken !== _renderToken) return; // בוטל
     if (!thumb) return;
-    const el = document.getElementById(`witem-${i}`);
+    const el = document.getElementById(`${idPrefix}-${i}`);
     if (!el) return;
     el.style.backgroundImage = `url('${thumb}')`;
     el.style.backgroundSize = 'cover';
@@ -493,6 +539,72 @@ function renderPortfolio(filter) {
     }
   });
 }
+
+function renderPortfolio(filter) {
+  const items = filter === 'הכל' ? allPortfolio : allPortfolio.filter(r => r['סוג'] === filter);
+  const grid = document.getElementById('works-grid');
+  if (filter === 'הכל') {
+    const featured = allPortfolio.filter(r => r['ראשי'] === 'כן');
+    grid.style.display = 'grid';
+    grid.style.flexWrap = '';
+    grid.style.justifyContent = 'center';
+    grid.style.gridAutoRows = '220px';
+    renderGrid(featured, grid, 'witem');
+    // הצג כפתור "כל הסרטונים" אם לא קיים
+    let btn = document.getElementById('show-all-btn');
+    if (!btn) {
+      btn = document.createElement('div');
+      btn.id = 'show-all-btn';
+      btn.style.cssText = 'text-align:center;margin-top:2rem';
+      btn.innerHTML = `<button onclick="openModal('הכל')" style="background:transparent;border:1px solid var(--green);color:var(--green);padding:0.7rem 2.5rem;border-radius:100px;font-family:'Heebo',sans-serif;font-weight:800;font-size:0.95rem;cursor:pointer;transition:all 0.2s" onmouseover="this.style.background='var(--green)';this.style.color='#000'" onmouseout="this.style.background='transparent';this.style.color='var(--green)'">כל הסרטונים ←</button>`;
+      grid.parentElement.appendChild(btn);
+    }
+    btn.style.display = 'block';
+    return;
+  }
+  // סינון קטגוריה — הסתר כפתור
+  const btn = document.getElementById('show-all-btn');
+  if (btn) btn.style.display = 'none';
+  grid.style.display = '';
+  grid.style.flexWrap = '';
+  grid.style.justifyContent = '';
+  grid.style.gridAutoRows = '220px';
+  renderGrid(items, grid, 'witem');
+}
+
+let _modalToken = 0;
+function openClientModal(clientName) {
+  const items = allPortfolio.filter(r => r['לקוח'] === clientName);
+  if (!items.length) return;
+  const modal = document.getElementById('pmodal');
+  document.getElementById('pmodal-title').textContent = clientName;
+  modal.style.display = 'block';
+  document.body.style.overflow = 'hidden';
+  const grid = document.getElementById('pmodal-grid');
+  grid.style.display = '';
+  grid.style.gridTemplateColumns = 'repeat(4,1fr)';
+  grid.style.gridAutoRows = '220px';
+  renderGrid(items, grid, 'citem');
+}
+
+function openModal(type) {
+  const items = type === 'הכל' ? allPortfolio : allPortfolio.filter(r => r['סוג'] === type);
+  const modal = document.getElementById('pmodal');
+  document.getElementById('pmodal-title').textContent = type === 'הכל' ? 'כל הסרטונים' : type;
+  modal.style.display = 'block';
+  document.body.style.overflow = 'hidden';
+  const grid = document.getElementById('pmodal-grid');
+  grid.style.display = '';
+  grid.style.gridTemplateColumns = 'repeat(4,1fr)';
+  grid.style.gridAutoRows = '220px';
+  renderGrid(items, grid, 'mitem');
+}
+function closeModal() {
+  document.getElementById('pmodal').style.display = 'none';
+  document.body.style.overflow = '';
+  ++_renderToken; // cancel any pending thumb loads
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 
 // ── טעינה — סדרתית בגלל callback יחיד ───────────────────
 async function loadAll() {
@@ -521,8 +633,12 @@ async function loadAll() {
     // STATS
     const statsBar = document.getElementById('stats-bar');
     statsBar.style.gridTemplateColumns = `repeat(${סטטיסטיקות.length},1fr)`;
+    // מצא את הסטטיסטיקה הגדולה ביותר להדגשה
+    function parseNum(v) { return parseFloat(String(v).replace(/[^0-9.]/g,'')) || 0; }
+    const maxIdx = 2; // תמיד התג השלישי מובלט
     statsBar.innerHTML = סטטיסטיקות.map((r, i) => `
-      <div class="stat reveal${i > 0 ? ' d'+Math.min(i,3) : ''}">
+      <div class="stat${i===maxIdx?' stat-hero':''} reveal${i > 0 ? ' d'+Math.min(i,3) : ''}">
+        <div class="stat-icon">${getStatIcon(r['תווית'] || '')}</div>
         <div class="stat-num" data-target="${r['ערך'] || ''}">0</div>
         <div class="stat-label">${r['תווית'] || ''}</div>
       </div>`).join('');
@@ -595,16 +711,37 @@ async function loadAll() {
     else if (n === 8) perRow = 4;       // 4+4
     else perRow = Math.ceil(n / 2);
     const cardWidth = `calc(${100 / perRow}% - ${(perRow - 1) * 1.5 / perRow}rem)`;
-    cGrid.innerHTML = לקוחות.map(r => `
-      <div class="client-item reveal">
+    cGrid.innerHTML = לקוחות.map((r, i) => {
+      const hasVideos = allPortfolio.some(v => v['לקוח'] === r['שם']);
+      return `<div class="client-item reveal${hasVideos ? ' client-clickable' : ''}" ${hasVideos ? `onclick="openClientModal('${r['שם'].replace(/'/g,"\\'")}')"`  : ''}>
+        <div class="client-avatar" id="cavatar-${i}">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+        </div>
         <span class="client-name">${r['שם'] || ''}</span>
         ${r['עוקבים'] ? `<div class="client-followers">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
           <span class="client-followers-num">${r['עוקבים']}</span>
           <span class="client-followers-label">עוקבים</span>
         </div>` : ''}
-      </div>`).join('');
+        ${hasVideos ? '<div class="client-hint">לחץ לצפייה בעבודות</div>' : ''}
+      </div>`;
+    }).join('');
     cGrid.querySelectorAll('.client-item').forEach(el => el.style.width = cardWidth);
+
+    // טעינת תמונות פרופיל לקוחות
+    לקוחות.forEach(async (r, i) => {
+      if (!r['תמונה']) return;
+      const driveId = getDriveFileId(r['תמונה']);
+      if (!driveId) return;
+      try {
+        const res = await fetch(`${APPS_SCRIPT_URL}?id=${driveId}`);
+        const json = await res.json();
+        if (!json.data) return;
+        const el = document.getElementById(`cavatar-${i}`);
+        if (!el) return;
+        el.innerHTML = `<img src="data:${json.mimeType};base64,${json.data}" style="width:100%;height:100%;object-fit:cover;border-radius:50%">`;
+      } catch(e) {}
+    });
 
     // TESTIMONIALS
     document.getElementById('tgrid').innerHTML = המלצות.map((r, i) => `
@@ -612,13 +749,28 @@ async function loadAll() {
         <div class="tstars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
         <p class="ttext">${r['טקסט'] || ''}</p>
         <div class="tauthor">
-          <div class="tavatar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></div>
+          <div class="tavatar" id="tavatar-${i}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></div>
           <div>
             <div class="tname">${r['שם'] || ''}</div>
             <div class="trole">${r['תפקיד'] || ''}</div>
           </div>
         </div>
       </div>`).join('');
+
+    // טעינת תמונות פרופיל
+    המלצות.forEach(async (r, i) => {
+      if (!r['תמונה']) return;
+      const driveId = getDriveFileId(r['תמונה']);
+      if (!driveId) return;
+      try {
+        const res = await fetch(`${APPS_SCRIPT_URL}?id=${driveId}`);
+        const json = await res.json();
+        if (!json.data) return;
+        const el = document.getElementById(`tavatar-${i}`);
+        if (!el) return;
+        el.innerHTML = `<img src="data:${json.mimeType};base64,${json.data}" style="width:100%;height:100%;object-fit:cover;border-radius:50%">`;
+      } catch(e) {}
+    });
 
     reObserve();
 
@@ -639,6 +791,257 @@ if (heroBgWord) {
     heroBgWord.style.transform = `translate(-50%, calc(-50% + ${translateY}px))`;
   }, { passive: true });
 }
+</script>
+<!-- כפתורים צפים -->
+<div id="fab-wrap" style="position:fixed;bottom:2rem;left:2rem;display:flex;flex-direction:column;gap:0.6rem;z-index:500">
+  <button id="fab-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="גלילה לראש"
+    style="width:44px;height:44px;border-radius:50%;background:var(--bg2);border:1px solid var(--bf);color:var(--muted);font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.2s;opacity:0;pointer-events:none">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><polyline points="18 15 12 9 6 15"/></svg>
+  </button>
+  <button id="fab-lang" title="החלף שפה"
+    style="width:44px;height:44px;border-radius:50%;background:var(--bg2);border:1px solid var(--bf);color:var(--muted);font-size:0.7rem;font-weight:800;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.2s;letter-spacing:0.5px;font-family:'Heebo',sans-serif">
+    EN
+  </button>
+</div>
+
+<script>
+function submitForm(btn) {
+  const name    = document.getElementById('form-input-name')?.value.trim();
+  const phone   = document.getElementById('form-input-phone')?.value.trim();
+  const email   = document.getElementById('form-input-email')?.value.trim();
+  const project = document.getElementById('project-type')?.value;
+  const msg     = document.getElementById('form-input-msg')?.value.trim();
+
+  if (!name || !email) {
+    alert('נא למלא לפחות שם ואימייל');
+    return;
+  }
+
+  btn.disabled = true;
+  btn.textContent = 'שולח...';
+
+  emailjs.send('service_dkvuqza', 'template_2q1qzv4', {
+    from_name:    name,
+    phone:        phone || '—',
+    from_email:   email,
+    project_type: project || '—',
+    message:      msg || '—'
+  }).then(() => {
+    btn.innerHTML = '&#10003; נשלח! אחזור אליך בקרוב';
+    btn.style.background = 'rgba(0,255,136,0.2)';
+    btn.style.color = 'var(--green)';
+    btn.style.border = '1px solid var(--green)';
+    // נקה שדות
+    ['form-input-name','form-input-phone','form-input-email','form-input-msg'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.value = '';
+    });
+    if (document.getElementById('project-type')) document.getElementById('project-type').selectedIndex = 0;
+  }).catch(err => {
+    console.error('EmailJS error:', err);
+    btn.disabled = false;
+    btn.innerHTML = 'שליחה נכשלה — נסה שוב';
+    btn.style.background = 'rgba(255,50,50,0.2)';
+    btn.style.color = '#ff6b6b';
+  });
+}
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+// גלילה לראש — הצג רק כשגוללים מטה
+window.addEventListener('scroll', () => {
+  const btn = document.getElementById('fab-top');
+  if (!btn) return;
+  if (window.scrollY > 400) {
+    btn.style.opacity = '1';
+    btn.style.pointerEvents = 'auto';
+    btn.style.borderColor = 'rgba(0,255,136,0.3)';
+  } else {
+    btn.style.opacity = '0';
+    btn.style.pointerEvents = 'none';
+    btn.style.borderColor = 'var(--bf)';
+  }
+});
+
+// hover על כפתורים
+document.querySelectorAll('#fab-wrap button').forEach(btn => {
+  btn.addEventListener('mouseenter', () => {
+    btn.style.background = 'var(--bg3)';
+    btn.style.borderColor = 'var(--green)';
+    btn.style.color = 'var(--green)';
+  });
+  btn.addEventListener('mouseleave', () => {
+    btn.style.background = 'var(--bg2)';
+    btn.style.borderColor = btn.id === 'fab-top' && window.scrollY > 400 ? 'rgba(0,255,136,0.3)' : 'var(--bf)';
+    btn.style.color = 'var(--muted)';
+  });
+});
+
+// מילון תרגום
+const TRANSLATIONS = {
+  he: {
+    'page-title': 'Reframe | עריכת וידאו מקצועית',
+    'nav-services': 'שירותים', 'nav-works': 'עבודות', 'nav-process': 'תהליך',
+    'nav-clients': 'לקוחות', 'nav-testi': 'המלצות', 'nav-contact': 'צור קשר',
+    'nav-cta': 'בואו נעבוד יחד &#9658;',
+    'hero-word': 'עריכה', 'hero-sub': 'זה כל הסיפור',
+    'hero-desc': 'סרטים, פודקאסטים, תוכן לרשתות וקליפים. אני מביא את הסיפור שלך לחיים עם עריכה שמרגישה נכון, תמיד.',
+    'hero-btn1': '&#9654;&nbsp;צפה בעבודות', 'hero-btn2': 'דבר איתי',
+    'svc-eyebrow': 'מה אני עושה', 'svc-title': 'עריכת וידאו לכל מטרה',
+    'svc-desc': 'עריכת וידאו ליוצרים ולמותגים עם תוכן איכותי – וולוגים, סדרות רשת וסרטוני תדמית בעריכה שמותאמת לקהל גדול',
+    'clients-eyebrow': 'עבדתי עם',
+    'portfolio-eyebrow': 'פורטפוליו', 'portfolio-title': 'עבודות נבחרות',
+    'show-all': 'כל הסרטונים ←',
+    'modal-close': '✕ סגור',
+    'process-eyebrow': 'איך זה עובד', 'process-title1': 'ארבעה צעדים', 'process-title2': 'מהרעיון למסך',
+    'process-desc': 'תהליך שקוף, מהיר ובלי הפתעות.',
+    'step1-title': 'שיחת היכרות', 'step1-desc': 'מבינים יחד מה הפרויקט, מה הסגנון, מה המטרה ומה לוח הזמנים.',
+    'step2-title': 'הצעת מחיר', 'step2-desc': 'הצעה מפורטת ומחייבת — מחיר ברור, לו"ז ברור. בלי הפתעות בסוף.',
+    'step3-title': 'גרסה ראשונה', 'step3-desc': 'העריכה הראשונה נשלחת לאישורך. כולל שני סבבי תיקונים מובנים.',
+    'step4-title': 'מסירה', 'step4-desc': 'הסרטון הסופי מועבר בפורמט המתאים לפלטפורמה שבחרת — מוכן לפרסום.',
+    'testi-eyebrow': 'לקוחות מדברים', 'testi-title': 'מה אומרים עליי',
+    'big-cta-text': 'יש לך<br/>פרויקט?<br/>בוא נעשה<br/>לו ',
+    'contact-title1': 'בואו נעבוד יחד', 'contact-title2': 'יש לך', 'contact-title3': 'פרויקט?',
+    'contact-title4': 'בוא נעשה', 'contact-title5': 'לו',
+    'contact-email-label': 'אימייל', 'contact-wa-label': 'וואטסאפ',
+    'contact-time-label': 'זמן תגובה', 'contact-time-val': 'עד 24 שעות',
+    'form-name': 'שם מלא', 'form-phone': 'טלפון', 'form-project': 'סוג הפרויקט',
+    'form-select': 'בחר סוג פרויקט...',
+    'form-opt1': 'סרט / תוכנית', 'form-opt2': 'פודקאסט',
+    'form-opt3': 'תוכן לרשתות חברתיות', 'form-opt4': 'קליפ / פרסומת', 'form-opt5': 'אחר',
+    'form-msg': 'ספר לי על הפרויקט', 'form-submit': 'בואו נעבוד יחד &#9889;',
+    'form-sent': '&#10003; נשלח! אחזור אליך בקרוב',
+    'footer': '&#169; 2025 Reframe &middot; עמית &middot; כל הזכויות שמורות',
+    'followers': 'עוקבים', 'videos': 'סרטונים', 'hint': 'לחץ לצפייה בעבודות'
+  },
+  en: {
+    'page-title': 'Reframe | Professional Video Editing',
+    'nav-services': 'Services', 'nav-works': 'Work', 'nav-process': 'Process',
+    'nav-clients': 'Clients', 'nav-testi': 'Testimonials', 'nav-contact': 'Contact',
+    'nav-cta': "Let's Work Together &#9658;",
+    'hero-word': 'Editing', 'hero-sub': "That's the whole story",
+    'hero-desc': 'Films, podcasts, social content and clips. I bring your story to life with editing that always feels right.',
+    'hero-btn1': '&#9654;&nbsp;View My Work', 'hero-btn2': 'Talk to Me',
+    'svc-eyebrow': 'What I Do', 'svc-title': 'Video Editing for Every Purpose',
+    'svc-desc': 'Video editing for creators and brands — vlogs, web series and brand films crafted for large audiences.',
+    'clients-eyebrow': 'Worked With',
+    'portfolio-eyebrow': 'Portfolio', 'portfolio-title': 'Selected Work',
+    'show-all': 'All Videos ←',
+    'modal-close': '✕ Close',
+    'process-eyebrow': 'How It Works', 'process-title1': 'Four Steps', 'process-title2': 'From Idea to Screen',
+    'process-desc': 'A transparent, fast process with no surprises.',
+    'step1-title': 'Intro Call', 'step1-desc': 'We figure out the project, style, goal and timeline together.',
+    'step2-title': 'Quote', 'step2-desc': 'A detailed, binding offer — clear price, clear schedule. No surprises at the end.',
+    'step3-title': 'First Draft', 'step3-desc': 'The first edit is sent for your approval, including two revision rounds.',
+    'step4-title': 'Delivery', 'step4-desc': 'The final video is delivered in the format suited to your chosen platform — ready to publish.',
+    'testi-eyebrow': 'Clients Say', 'testi-title': 'What They Say About Me',
+    'big-cta-text': 'Got a<br/>Project?<br/>Let\'s make<br/>it happen ',
+    'contact-title1': "Let's Work Together", 'contact-title2': 'Got a', 'contact-title3': 'Project?',
+    'contact-title4': "Let's make", 'contact-title5': 'it happen',
+    'contact-email-label': 'Email', 'contact-wa-label': 'WhatsApp',
+    'contact-time-label': 'Response Time', 'contact-time-val': 'Within 24 hours',
+    'form-name': 'Full Name', 'form-phone': 'Phone', 'form-project': 'Project Type',
+    'form-select': 'Select project type...',
+    'form-opt1': 'Film / Show', 'form-opt2': 'Podcast',
+    'form-opt3': 'Social Media Content', 'form-opt4': 'Clip / Ad', 'form-opt5': 'Other',
+    'form-msg': 'Tell me about the project', 'form-submit': "Let's Work Together &#9889;",
+    'form-sent': "&#10003; Sent! I'll get back to you soon",
+    'footer': '&#169; 2025 Reframe &middot; Amit &middot; All rights reserved',
+    'followers': 'followers', 'videos': 'videos', 'hint': 'Click to view work'
+  }
+};
+
+function applyLang(lang) {
+  const T = TRANSLATIONS[lang];
+  const html = document.documentElement;
+  html.setAttribute('lang', lang);
+  html.setAttribute('dir', lang === 'he' ? 'rtl' : 'ltr');
+  document.title = T['page-title'];
+  const set = (id, val) => { const el = document.getElementById(id); if (el) el.innerHTML = val; };
+  const setText = (sel, val) => document.querySelectorAll(sel).forEach(el => el.innerHTML = val);
+  // נאב
+  document.querySelectorAll('#nav-links a').forEach((a, i) => {
+    const keys = ['nav-services','nav-works','nav-process','nav-clients','nav-testi','nav-contact'];
+    if (T[keys[i]]) a.innerHTML = T[keys[i]];
+  });
+  const navCta = document.querySelector('.nav-cta');
+  if (navCta) navCta.innerHTML = T['nav-cta'];
+  // הירו
+  set('hero-word-el', T['hero-word']);
+  set('hero-sub-el', T['hero-sub']);
+  set('hero-desc-el', T['hero-desc']);
+  set('hero-btn1-el', T['hero-btn1']);
+  set('hero-btn2-el', T['hero-btn2']);
+  // big-cta
+  set('big-cta-el', T['big-cta-text']);
+  // שירותים
+  set('svc-eyebrow-el', T['svc-eyebrow']);
+  set('svc-title-el', T['svc-title']);
+  set('svc-desc-el', T['svc-desc']);
+  // לקוחות
+  set('clients-eyebrow-el', T['clients-eyebrow']);
+  // פורטפוליו
+  set('portfolio-eyebrow-el', T['portfolio-eyebrow']);
+  set('portfolio-title-el', T['portfolio-title']);
+  const showAllBtn = document.querySelector('#show-all-btn button');
+  if (showAllBtn) showAllBtn.innerHTML = T['show-all'];
+  const modalClose = document.querySelector('#pmodal button');
+  if (modalClose) modalClose.innerHTML = T['modal-close'];
+  // תהליך
+  set('process-eyebrow-el', T['process-eyebrow']);
+  set('process-title1-el', T['process-title1']);
+  set('process-title2-el', T['process-title2']);
+  set('process-desc-el', T['process-desc']);
+  const stepTitles = document.querySelectorAll('.step-title');
+  const stepDescs = document.querySelectorAll('.step-desc');
+  ['step1','step2','step3','step4'].forEach((s,i) => {
+    if (stepTitles[i]) stepTitles[i].innerHTML = T[s+'-title'];
+    if (stepDescs[i]) stepDescs[i].innerHTML = T[s+'-desc'];
+  });
+  // המלצות
+  set('testi-eyebrow-el', T['testi-eyebrow']);
+  set('testi-title-el', T['testi-title']);
+  // יצירת קשר
+  set('contact-title1-el', T['contact-title1']);
+  set('contact-title2-el', T['contact-title2']);
+  set('contact-title3-el', T['contact-title3']);
+  set('contact-title4-el', T['contact-title4']);
+  set('contact-title5-el', T['contact-title5']);
+  set('contact-email-label-el', T['contact-email-label']);
+  set('contact-wa-label-el', T['contact-wa-label']);
+  set('contact-time-label-el', T['contact-time-label']);
+  set('contact-time-val-el', T['contact-time-val']);
+  // טופס
+  set('form-name-el', T['form-name']);
+  set('form-phone-el', T['form-phone']);
+  set('form-email-el', T['form-email'] || (lang==='he'?'אימייל':'Email'));
+  set('form-project-el', T['form-project']);
+  set('form-msg-el', T['form-msg']);
+  const opts = document.querySelectorAll('#project-type option');
+  ['form-select','form-opt1','form-opt2','form-opt3','form-opt4','form-opt5'].forEach((k,i) => {
+    if (opts[i] && T[k]) opts[i].innerHTML = T[k];
+  });
+  const sbtn = document.querySelector('.sbtn');
+  if (sbtn) sbtn.innerHTML = T['form-submit'];
+  // פוטר
+  set('footer-text', T['footer']);
+  // עוקבים
+  document.querySelectorAll('.client-followers-label').forEach(el => el.innerHTML = T['followers']);
+  document.querySelectorAll('.client-hint').forEach(el => el.innerHTML = T['hint']);
+  document.querySelectorAll('.cat-count').forEach(el => {
+    const n = el.textContent.match(/\d+/)?.[0] || '';
+    el.innerHTML = n + ' ' + T['videos'];
+  });
+  document.getElementById('fab-lang').textContent = lang === 'he' ? 'EN' : 'HE';
+}
+
+let currentLang = 'he';
+document.getElementById('fab-lang').addEventListener('click', () => {
+  currentLang = currentLang === 'he' ? 'en' : 'he';
+  applyLang(currentLang);
+});
+}); // DOMContentLoaded
 </script>
 </body>
 </html>
