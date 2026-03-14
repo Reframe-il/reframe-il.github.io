@@ -41,7 +41,7 @@ h1 .acc{color:var(--green)}
 .btn-ghost{color:var(--muted);border:1.5px solid rgba(255,255,255,0.15);padding:0.9rem 2rem;border-radius:100px;font-weight:700;font-size:0.95rem;text-decoration:none;transition:border-color 0.2s,color 0.2s}
 .btn-ghost:hover{border-color:var(--green);color:var(--green)}
 .ticker-wrap{overflow:hidden;padding:0.85rem 0;background:var(--green);margin:0 -3rem}
-.ticker{display:flex;gap:3rem;animation:ticker 20s linear infinite;white-space:nowrap;direction:ltr}
+.ticker{display:flex;gap:3rem;animation:ticker 12s linear infinite;white-space:nowrap;direction:ltr}
 .ticker span{font-weight:900;font-size:0.82rem;letter-spacing:1.5px;text-transform:uppercase;color:#000;flex-shrink:0}
 .tsep{color:rgba(0,0,0,0.3)}
 @keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
@@ -59,8 +59,8 @@ h1 .acc{color:var(--green)}
 h2{font-family:'Rubik',sans-serif;font-style:italic;font-weight:900;font-size:clamp(2.2rem,5vw,3.6rem);line-height:1.05;margin-bottom:1rem}
 .section-desc{color:var(--muted);font-size:1rem;line-height:1.7;max-width:480px;margin-bottom:3.5rem}
 #services{background:var(--bg2)}
-.svc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--bf)}
-.svc-card{background:var(--bg2);padding:2.5rem 2rem;position:relative;overflow:hidden;transition:background 0.25s}
+.svc-grid{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--bf);border-radius:14px;overflow:hidden}
+.svc-card{background:var(--bg2);padding:1.8rem 1.5rem;position:relative;overflow:hidden;transition:background 0.25s;border-left:1px solid var(--bf)}.svc-card:first-child{border-left:none}
 .svc-card:hover{background:var(--bg3)}
 .svc-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--green);transform:scaleX(0);transform-origin:right;transition:transform 0.4s}
 .svc-card:hover::after{transform:scaleX(1);transform-origin:left}
@@ -114,8 +114,8 @@ h2{font-family:'Rubik',sans-serif;font-style:italic;font-weight:900;font-size:cl
 .wplaceholder>svg{width:3rem;height:3rem;color:var(--green)}
 .wviews svg{width:12px!important;height:12px!important;flex-shrink:0}
 #process{background:var(--bg2)}
-.steps-grid{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--bf)}
-.step{padding:2.5rem 2rem;border-left:1px solid var(--bf);transition:background 0.2s;position:relative}.step:first-child{border-left:none}
+.steps-grid{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--bf);border-radius:14px;overflow:hidden}
+.step{padding:1.8rem 1.5rem;border-left:1px solid var(--bf);transition:background 0.2s;position:relative}.step:first-child{border-left:none}
 .step:hover{background:var(--bg3)}
 .step::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--green);transform:scaleX(0);transform-origin:right;transition:transform 0.4s}
 .step:hover::before{transform:scaleX(1);transform-origin:left}
@@ -141,9 +141,9 @@ h2{font-family:'Rubik',sans-serif;font-style:italic;font-weight:900;font-size:cl
 .client-followers-num{font-family:'Rubik',sans-serif;font-style:italic;font-weight:900;font-size:1.1rem;color:var(--green)}
 .client-followers-label{font-size:0.65rem;color:var(--muted);font-weight:600;letter-spacing:1px;text-transform:uppercase}
 #testi{background:var(--bg2)}
-.tgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--bf);margin-top:3rem}
-.tcard{background:var(--bg2);padding:2.2rem;transition:background 0.2s;position:relative;overflow:hidden;display:flex;flex-direction:column}
-.tcard:hover{background:var(--bg3)}
+.tgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-top:3rem}
+.tcard{background:var(--bg2);border:1px solid var(--bf);border-radius:14px;padding:2rem;transition:background 0.2s,border-color 0.2s;position:relative;overflow:hidden;display:flex;flex-direction:column}
+.tcard:hover{background:var(--bg3);border-color:rgba(0,255,136,0.2)}
 .tcard::before{content:'"';position:absolute;top:-10px;right:1.5rem;font-family:'Rubik',sans-serif;font-style:italic;font-weight:900;font-size:8rem;color:rgba(0,255,136,0.06);line-height:1;pointer-events:none}
 .tstars{color:var(--green);font-size:0.85rem;letter-spacing:2px;margin-bottom:1rem;direction:ltr}
 .ttext{color:var(--muted);font-size:0.92rem;line-height:1.7;margin-bottom:1.5rem;position:relative;z-index:1;flex:1}
@@ -180,37 +180,50 @@ footer{background:var(--dark);padding:2rem 3rem;display:flex;align-items:center;
   .section{padding:4rem 1.5rem}.hero{padding:6rem 1.5rem 0}.ticker-wrap{margin:0 -1.5rem}
   .svc-grid{grid-template-columns:1fr 1fr}.steps-grid{grid-template-columns:1fr 1fr}
   .step{border-left:none;border-top:1px solid var(--bf)}
-  #clients{padding:3rem 1.5rem}.tgrid{grid-template-columns:1fr}
+  #clients{padding:3rem 1.5rem}
   .cgrid{grid-template-columns:1fr;gap:3rem}
-  footer{flex-direction:column;text-align:center}.form-row{grid-template-columns:1fr}
-  /* סטטיסטיקות — 2 בשורה */
-  .stats-bar{grid-template-columns:1fr 1fr!important}
-  .stat{padding:1.5rem 0.8rem}
-  .stat-num{font-size:2rem}
-  .stat-icon{width:34px;height:34px}
-  /* פורטפוליו — 1 עמודה */
-  .works-grid{grid-template-columns:1fr!important;grid-auto-rows:200px!important}
+  footer{flex-direction:column;text-align:center}.form-row{grid-template-columns:1fr 1fr}
+  /* סטטיסטיקות — 2 עמודות, המודגשת על שורה שלמה */
+  .stats-bar{grid-template-columns:repeat(2,1fr)!important}
+  .stat-hero{grid-column:1/-1;border-left:none;border-bottom:1px solid rgba(0,255,136,0.25)}
+  .stat{padding:1.5rem 0.5rem}
+  .stat-num{font-size:1.8rem}
+  .stat-icon{width:32px;height:32px}
+  .hero-bg-word{font-size:22vw;letter-spacing:-2px}
+  .hero{overflow:hidden}
+  .wplay{width:22px;height:22px;font-size:0.55rem}
+  .wviews span{font-size:0.55rem}
+  .wviews{padding:0.12rem 0.3rem}
+  .wtag{font-size:0.5rem;padding:0.12rem 0.3rem;top:0.4rem;right:0.4rem}
+  .wph-title,.wtitle{font-size:0.7rem}
+  /* פורטפוליו — 2 עמודות */
+  .works-grid{grid-template-columns:repeat(2,1fr)!important;grid-auto-rows:160px!important;max-width:100%!important}
   .witem-pair{flex-direction:row}
-  .witem-half{min-height:200px}
+  .witem-half{min-height:160px}
+  .witem.reveal[id^="witem-f"]{width:100%!important}
   /* מודל */
   #pmodal{padding:1rem 0.75rem}
-  #pmodal-grid{grid-template-columns:1fr!important;grid-auto-rows:200px!important}
+  #pmodal-grid{grid-template-columns:repeat(2,1fr)!important;grid-auto-rows:160px!important}
+  /* המלצות — 2 עמודות */
+  .tgrid{grid-template-columns:1fr 1fr}
   /* FAB */
   #fab-wrap{bottom:1.2rem;left:1.2rem}
-  /* hero */
-  .hero-content h1{font-size:clamp(2.8rem,10vw,5rem)}
   /* port-head */
   .port-head{flex-direction:column;align-items:flex-start}
 }
 @media(max-width:480px){
-  .stats-bar{grid-template-columns:1fr 1fr!important}
-  .stat-num{font-size:1.6rem}
-  .svc-grid{grid-template-columns:1fr}
-  .steps-grid{grid-template-columns:1fr}
+  .stats-bar{grid-template-columns:repeat(2,1fr)!important}
+  .stat-hero{grid-column:1/-1}
+  .stat-num{font-size:1.4rem}
+  .stat-icon{width:28px;height:28px;margin-bottom:0.5rem}
+  .svc-grid{grid-template-columns:1fr 1fr}
+  .steps-grid{grid-template-columns:1fr 1fr}
   .filter-tabs{flex-wrap:wrap;gap:0.4rem}
   .ftab{font-size:0.75rem;padding:0.3rem 0.8rem}
   .tgrid{grid-template-columns:1fr}
-  .client-item{width:100%!important;min-width:unset}
+  .client-item{width:calc(50% - 0.75rem)!important;min-width:unset}
+  .form-row{grid-template-columns:1fr}
+  .works-grid{grid-template-columns:repeat(2,1fr)!important;grid-auto-rows:140px!important}
 }
 </style>
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
@@ -346,12 +359,6 @@ footer{background:var(--dark);padding:2rem 3rem;display:flex;align-items:center;
 <footer>
   <a href="#" class="logo"><span class="br">[</span><span class="r">R</span><span class="br">]</span><span class="rest">eframe</span><span class="dot"></span></a>
   <div class="fcopy"><span id="footer-text">&#169; 2025 Reframe &middot; עמית &middot; כל הזכויות שמורות</span></div>
-  <div class="socials">
-    <a href="#" class="soc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
-    <a href="#" class="soc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a>
-    <a href="#" class="soc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg></a>
-    <a href="#" class="soc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg></a>
-  </div>
 </footer>
 
 <script>
@@ -508,8 +515,11 @@ function renderGrid(items, grid, idPrefix) {
   const eyeSVG = `<svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.75)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="12" height="12"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>`;
   const bottomBar = r => `<div class="wbottom">${r['צפיות'] ? `<div class="wviews">${eyeSVG}<span>${r['צפיות']}</span></div>` : '<div></div>'}${r['קישור_וידאו'] ? '<div class="wplay">&#9654;</div>' : '<div></div>'}</div>`;
 
-  grid.style.gridTemplateColumns = `repeat(${Math.min(cells.length, 4)}, 1fr)`;
-  grid.style.maxWidth = `${Math.min(cells.length, 4) * 25}%`;
+  const isMobile = window.innerWidth <= 900;
+  const maxCols = isMobile ? 2 : 4;
+  const numCols = Math.min(cells.length, maxCols);
+  grid.style.gridTemplateColumns = `repeat(${numCols}, 1fr)`;
+  grid.style.maxWidth = '';
   grid.style.margin = '0 auto';
   grid.innerHTML = cells.map((cell, ci) => {
     if (cell.type === 'single') {
